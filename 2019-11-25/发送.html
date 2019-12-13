@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box{
+        width: 300px;
+        /* height: 500px; */
+        /* overflow: hidden; */
+        border: skyblue 1px solid;
+    }
+    </style>
+</head>
+
+<body>
+    
+
+    <input type="text">
+    <button>发送</button>
+    <div id="box">
+    <ul>
+        
+    </ul>
+    
+</div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script>
+    $(':button').click(function(){
+        let val = $(':text').val();
+        $('ul').html($('ul').html() + '<li>'+val+'</li>')
+        $(':text').val('');
+    })
+    
+    </script>
+</body>
+
+</html>     

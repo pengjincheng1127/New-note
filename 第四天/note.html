@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+</head>
+
+<body>
+
+
+
+     <script>
+          /*
+     面向对象:（谁来做）
+          封装、继承、多态，面向对象的特征
+               封装就是归类的过程
+
+          就是换一种编程方式：把具有相同特征的特性的代码归为一类(类)
+          把描述这个类的特性(共有属性、方法)挂在这个类的原型下的一种编程方式
+     
+          面向过程：如何实现
+          new
+               函数的一元运算符，只能运算函数
+
+               1.this变成了实例
+               2.默认return实例，如果手动设置了返回值，如果是原始类型的那么还是实例，如果是引用类型那么返回的就是引用类型
+               3.加不加括号都能执行函数，括号主要是为了传参
+               4.首字母大写
+               原型：
+                    当声明函数的时候，函数天生自带的一个属性
+                    prototype
+                    prototype下的方法或者属性只能通过两种方式使用：
+                    1.给自己的实例化对象使用
+                    2.直接使用
+               原型链：
+                    实例化对象上都有一个叫做__proto__的属性
+                    他的值全等于构造函数的原型
+                    
+                    如果某个原型下没有想要的属性或者方法，那么还会通过这个原型下的原型链继续查找，直到找到Object.prototype为止因为Object.prototype.__proto__为null
+
+               内置类：浏览器自带的类
+                    所有的类型都是构造函数构造出来的
+
+               函数的三种角色：
+                    函数：能够调用的角色
+                    构造函数：
+                         new 构造对象的
+                         fn.prototype  公共的属性或者方法挂在这个构造函数的原型下
+                    Function的实例：
+                    new Function ->fnuction(){}
+
+                    __proto__
+                    在函数的原型下有一个属性，constructor，这个属性指向构造函数，但是当前的constructor并不是百分百准确的，他的指针仅仅只是一个指向构造函数的方向(一个参考)，非常容易修改
+                     注意的是在对象赋值给构造函数原型的时候，constructor指向会被修改
+                     指向的是Object,所以手动修正constructor指向。
+               hasOwnProperty
+                    查看某个属性是不是对象自身的
+
+                    返回一个布尔值
+                         是自身的属性就是true，否则false
+                    用法：
+                         for in 的时候会枚举原型，会把自定义的属性或者方法枚举出来
+
+                         查看某个属性或者方法是否为对象自身的(面向对象中)即可查看某个属性时共有的还是私有的
+                    在for in的过程当中，如果不能确定构造函数的原型下是否有自定义的属性或者方法
+                    那么加一个if贩毒案判断枚举的属性都是自身的
+     */
+          /* Object.prototype.sex = '男';
+               let obj = {
+                    name: '啧啧啧',
+                    age: 1
+               }
+
+               for (let attr in obj) {
+                    if (obj.hasOwnProperty(attr)) {
+                         console.log(obj[attr]);
+                    }
+                    console.log(attr);
+               } */
+          /*
+               封装一个hasPubProperty 某个属性是公共的
+          */
+          /*   function hasPubProperty(obj, attr) {
+                 return !obj.hasPubProperty(attr)
+            } */
+
+          /*基于内置类扩展写法*/
+          /* let ary = [0]
+          Array.prototype.isconcat = function(...arg){
+               return [...this,...arg.flat(Infinity)];
+          }
+          console.log(ary.isconcat([1,2],[3,4]).isconcat([5,6])); */
+
+          /*
+          this
+          1.window
+               全局打印this
+               函数+括号
+               定时器
+               匿名函数 ()()
+          2.事件触发的元素
+               只要是事件函数内的this都指向事件触发的元素
+          3.点前面的主
+          4.实例
+               构造函数下的this是实例
+               构造函数原型的this也是实例
+               Fn.prototype.say() this为Fn.prototype
+          5.箭头函数
+               指向的是声明箭头函数的上下文this
+
+               没有arguments， 不能new
+          
+          */
+        /*   document.onclick = function () {
+               console.log(this); //documents
+          }
+          document.onclick = function () {
+               fn() //window
+          }
+
+          function fn() {
+               console.log(this);
+          }
+
+          document.onclick = function () {
+               setTimeout(function () {
+                    console.log(this); //window
+               }, 100)
+          }
+          document.onclick = function () {
+               let fn = () => {
+                    console.log(this); //document
+               }
+               fn();
+          }
+          document.onclick = () => {
+               console.log(this); //window
+          } */
+          /*
+          当一个函数创建的时候，天生自带的方法，其中又call
+          apply，bind方法
+          call：
+               有若干个参数：
+                    第一个参数：
+                         修改this指向
+                    第二个参数：
+                         函数的实参*/
+        
+
+          
+          /*
+
+          apply：
+               有2个参数：
+                    第一个参数：
+                         修改this指向
+                    第二个参数:
+                         数组，数组里面放的是实参
+          bind：(惰性函数，柯里化函数，高阶函数)
+               多个函数
+               第一个函数：
+                    修改this指向
+               第二个参数之后
+                    函数的实参
+               
+               他返回的是新函数，只要调用返回的函数才能执行函数内的代码
+               都是修改this指向的方法
+
+          细节：
+               在使用他们修改this的时候，不要传null和undefined，因为传了也不认还是会走默认的window
+          */
+          /* function fn(a,b){
+               console.log(this,a,b);
+          } */
+          // fn.call(111,1,2)
+          // fn.apply({},[1,2])
+          // fn.bind([],1,2)()//fn.bind('zzz')(2,3)
+     
+     </script>
+</body>
+
+</html>

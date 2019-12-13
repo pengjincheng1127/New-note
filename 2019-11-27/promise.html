@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /*
+        Promise -> 承诺 
+        
+            Promise 解决了异步编程的问题
+            在then里面就走 同步
+
+            new Promise(function(resolve,reject){
+                主线程
+                当异步代码执行完，通过异步代码的结果去调用resolve或者reject
+
+                异步代码有可能报错或者错误，如果报错或者错误就执行reject
+                一般都是resolve（放异步的结果）
+            })
+
+            他有一个返回值，返回值是promise对象，这个对象有then方法
+            then(成功函数，失败函数
+            第一个then(微任务)
+                成功函数里面的参数就是异步的结果
+
+            第二个then(微任务)
+                第一个then的返回值
+            
+                虽然promise解决了异步变成的问题，但是在then的外面还是异步的
+
+                没有promise也能进行开发
+                then中包含两个函数，第一个函数是成功之后的回调，第二个函数是失败之后的回调
+
+                finally：不管成功还是失败都会进的回调函数
+
+                如果代码报错，下面的代码是不会执行，如果shiyongtry，catch那么try中的代码会报错会进catch，报错是不会影响后面代码执行的
+                try{}catch(e){}
+
+                 fetch().then(function(d){
+                    return d.json();
+                }).then(function(d){
+                    console.log(d); //d就是d.json()
+                });
+
+                当进第一个then的时候，d就是返回的数据，但是这个数据是被promise包了一层
+                d.json() -> '[]'->[]
+
+
+                JSON ->  长得像对象和数组的字符串，本质是字符串
+
+                '[]'JSON  ->  []数组
+                '{}'JSON  ->  {} 对象
+
+
+                JSON取值是不方便的，可以使用JSON.parse(),把JSON转成对象
+
+                parse必须为标准
+                的JSON格式才成功转换
+                '{"name":"zf"}'
+                '[]' -> []
+
+                对象转JSON -> JSON.stringify() 的副作用是函数和undefined会被过滤掉
+                [] -> '[]'
+
+
+                
+                
+        */
+    </script>
+</body>
+
+</html>

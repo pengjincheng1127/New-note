@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+    /*
+    选择器的比重
+
+    !important 10000
+    style  1000
+
+    # 100
+    . 10
+    targName 1
+
+     
+    通用选择器（*）、子选择器（>）、相邻选择器（+）、同胞选择器（~）、权重值为0
+
+
+
+     !important(10000) >  style(1000) > #(100) > 类，伪类(10) > targe，伪元素(1) > *+~ (0)
+
+     div[class|="a"]  class要么是a要么是a-开头的
+
+     nth-child(n)选择父元素的第N个子元素，N是整数（1,2,3）、关键字（even、odd）、公式（2n+1），n的初始值为1.
+
+     nth-last-child(n)选择父元素的倒数第n个子元素(所有子元素中查找)
+
+     nth-of-type(n) 只在同一种类型的原型上查找，第n个元素
+
+     :only-child选择父元素只包含一个子元素
+
+     only-of-type选择父元素只包含一个同类型的子元素
+
+     empty  选择没有子元素的元素，并且该元素没有任何文本节点
+    */
+
+    /*文字阴影
+
+    第一个数字代表 水平方向 x
+    第二个数字代表 垂直方向 y
+    第三个数字模糊半径 
+    颜色
+    */
+
+    /*
+     filter 高斯模糊 
+    //  filter: blur(10px);
+    */
+    /*
+      
+        景深 数值越大离的越远，数值越小离的就越近
+    
+        perspective: 50px;
+    */
+    /*
+    弹性盒模型:PC端一不定兼容，移动端基本兼容
+
+        当父级写了flex之后就等同于左浮动（所有的子级），之前的浮动就没有效果了
+
+        默认方向是左对齐:
+            justify-content: flex-start;
+        可以设置右对齐:
+            justify-content:flex-end;
+
+        居中对齐:
+            justify-content:center
+
+        第一个和最后一个分别顶着父级的边，中间平均分
+            justify-content:space-between
+
+        平均分配剩余的空间
+            justify-content:space-around
+
+        间距平均分配
+            justify-content: space-evenly;
+    */
+    /*
+        
+        强制换行:(注意的是flex布局默认是不换行的为默认**一行**显示)
+            flex-wrap:wrap;
+
+        flex-wrap:wrap-reverse;  两行颠倒
+        flex-direction: 
+        row; x轴  row-reverse;X轴并翻转  *column Y轴 column-reverse; Y轴并翻转
+
+  默认左上对齐w
+
+        底部对齐
+            align-items:flex-end
+
+        文本对齐:
+            align-items:baseline
+
+        拉扯:
+             align-items:stretch (没有设置高度的会被拉扯)
+
+    */
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    div{
+
+        padding: 100px;
+        
+    }
+    #box2{ 
+        background: chartreuse;
+        position: relative;
+    }
+    #box3{
+        position: absolute;
+        background: cyan;
+    }
+    
+    </style>
+</head>
+<body>
+    <div>
+        <div id="box2">
+            <div id="box3">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /*
+        DOM:获取可视区的宽/高度
+            document.documentElement.clientHeight
+            document.documentElement.clientwidth 如果有滚动条会减去滚动条的宽度
+
+            element.getBoundingClientRect()他返回的是一个对象，这个对象下放着。。。。。。。
+            document.documentElement.scrollTop
+
+        BOM:
+            window.innerHeight/window.innerWidth //如果有滚动条，不会减去滚动条的宽度
+           
+            window.pageXOffset/window.pageYOffset
+            
+        */
+    console.log(document.documentElement.clientHeight,document.documentElement.clientWidth);
+    console.log(innerHeight,innerWidth);
+    
+    
+    </script>
+</body>
+</html>

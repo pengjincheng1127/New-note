@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    /*
+        防抖（停下来才触发）
+            当频率很高触发时间的时候都不执行事件函数中的代码
+            只有停下来的时候在执行
+
+                deBounce(回调函数,延迟多少时间)
+
+        节流(降频率)
+            每隔固定时间执行一次时间函数中的代码(0-100 10)
+    */
+    //防抖(debounce) 和 节流(throttling) 
+    function throttling(cb,time){
+        let prevtime = 0;
+        return function(...arg){
+            let nowTime = +new Date;
+            if(nowTime - prevtime >time){
+                cb.call(this,...arg);
+            }
+            prevtime = nowTime;
+        }
+    }
+    document.onclick = throttling(fn,200);
+    //事件函数的第一个参数为事件对象
+    function fn(ev){
+        // console.log(ev);
+        console.log('触发了',ev,this);
+    }
+    function debounce(cb,time){
+        let timer;
+        return function(...arg){
+            //当时间触发的时候就先关闭上次的timer
+            if(timer){
+                clearTimeout(timer);
+            }
+            timer = setTimeout(()=>{
+                cb.call(this,...arg);
+
+            },time)
+        }
+    }
+    
+    </script>
+</body>
+</html>

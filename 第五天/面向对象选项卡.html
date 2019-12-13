@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <title>Document</title>
+     <style>
+          * {
+               margin: 0;
+               padding: 0;
+          }
+
+          .active {
+               background: yellow;
+          }
+
+          #box {
+               position: relative;
+               left: 0;
+               top: 0;
+               transition: 3s;
+          }
+
+          #box2 {
+
+               position: relative;
+               left: 1000px;
+               top: 0;
+               transition: 3s;
+          }
+
+          #box div,
+          #box2 div {
+               width: 200px;
+               height: 100px;
+               border: 1px solid #000;
+               display: none;
+          }
+
+          #box div.show,
+          #box2 div.show {
+               display: block;
+          }
+     </style>
+</head>
+
+<body>
+     <div id="box">
+          <button class="active" index="0">按钮一</button>
+          <button index="1">按钮二</button>
+          <button index="2">按钮三</button>
+          <div class="show">11111</div>
+          <div>22222</div>
+          <div>33333</div>
+     </div>
+     <div id="box2">
+          <button class="active" index="0">按钮一</button>
+          <button index="1">按钮二</button>
+          <button index="2">按钮三</button>
+          <div class="show">11111</div>
+          <div>22222</div>
+          <div>33333</div>
+     </div>
+     <button id="btn1">第一个动起来</button>
+     <button id="btn2">让第二个动起来</button>
+     <button id="btn3">启动</button>
+
+     <script>
+          class Tab {
+               constructor(id) {
+                    this.box = document.getElementById(id);
+                    this.divs = this.box.querySelectorAll('div');
+                    this.btns = this.box.querySelectorAll('button');
+                    this.prevIndex = 0;
+                    this.timer;
+                    this.num = 0;
+               }
+               say() {
+                    console.log(this.box, this.divs);
+               }
+          }
+
+          Tab.prototype.events = function () {
+               const that = this;
+               for (let i = 0, len = this.btns.length; i < len; i++) {
+                    this.btns[i].onclick = function () {
+                         that.change(i)
+                    }
+               }
+          }
+
+          Tab.prototype.change = function (i) {
+               this.btns[this.prevIndex].className = this.divs[this.prevIndex].className = ''
+               this.btns[i].className = 'active';
+               this.divs[i].className = 'show';
+               this.prevIndex = i
+          }
+          Tab.prototype.leftplay = function () {
+               const that = this;
+               this.timer = setInterval(() => {
+
+                    this.box.style.left = 1000 + 'px'
+                    console.log(this);
+                          
+
+               }, 100)
+
+               if (box2.style.left === '1000px') {
+                    clearInterval(this.timer)
+               }
+          }
+
+          Tab.prototype.rightplay = function () {
+               // const that = this;
+               this.timer = setInterval(() => {
+                    box2.style.left = 0
+
+               }, 100)
+               if (box2.style.left === 0) {
+                    clearInterval(this.timer)
+               }
+          }
+
+          let aa = new Tab('box')
+          let bb = new Tab('box2')
+          aa.events();
+          bb.events()
+          console.log(aa);
+          btn1.onclick = function () {
+               aa.leftplay()
+          }
+          btn2.onclick = function () {
+               bb.rightplay()
+          }
+          btn3.onclick = function () {
+               aa.leftplay();
+               bb.rightplay()
+          }
+     </script>
+
+</body>
+</html>   

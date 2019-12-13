@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+    /*
+    原生对象转jquery只需要包$()就可以
+
+    box ->$(box) 就变成了jquery
+
+    jquery对象转原生对象
+        $box ->$box.get(0) || $box[0]
+    */
+
+        let $box= $('#box')
+
+        console.log($box[0]);
+        
+    
+    </script>
+</body>
+</html>

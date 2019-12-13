@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <!---
+    pc
+    移动(主流单一的开发，只针对于手机浏览器开发的)
+    flex布局
+    rem布局
+
+    (次于主流)
+        响应式布局
+            一个项目要写若干个css去适配
+    
+        百分比布局
+        table布局
+
+    视口：
+        布局视口
+            有滚动条，宽度以整个页面(整个文档)为主
+            document.documentElement.clientWidth
+        视觉视口，能让pc上的页面，整个撞到移动端浏览器上，但是会缩小体验不好，如果要看就要双指放大
+            是根据设备的宽度来走的，window.innerWidth
+        理想视口
+            一切显示都是根据设备来的，window.screen.width
+
+        width=device-width 表示宽度为设备宽度
+        initial-scale = 1.0 初始化缩放比例
+        maximum-scale = 1.0 最大缩放比例
+        minimum- scale = 1.0 最小缩放比例
+        user-scalable = no 是否允许缩放，no|0不能，yes|1 能
+
+         <meta name="viewport" content="user-scalable=no,maximum-scale=1.0  ,minimum-scale=1.0,width=device-width, initial-scale=1.0">
+
+         物理像素：一个屏幕有多少个像素点
+         逻辑像素：css设置的像素
+         在pc上物理像素和逻辑像素是相等的，所以布局的时候，量多少就是多少
+
+         
+    -->
+    <script>
+      /*
+        可以调试自己的手机:
+            1.同一个wifi要链手机和PC，能使用到局域网
+
+            2.liveServer
+
+            3.cmd
+                ipconfig -> 去看ip -> 找到IPv4 -> 172.18.1.223
+
+            targetTouches
+                触碰到元素身上触发，随着手指的增多，会动态更新
+
+            touches
+                随着手指的增多，会动态更新
+
+
+            **上面2个是按照手指放到屏幕上来算
+            **下面这个是按照当前手指触摸来算    
+
+            changedTouches
+                当一个手指按下的时候，再放另一根手指，这个时候还是显示一根手指，显示的为第二根手指
+                如果两根手指一起放到屏幕上，那么显示2根
+
+        移动端触点使用:
+            按下和移动的时候使用targetTouches
+
+            抬起的时候使用changedTouches
+            
+
+    */
+
+    </script>
+</body>
+</html>

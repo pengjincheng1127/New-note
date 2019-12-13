@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        transition
+            property 运动的属性
+            duration规定完成过度效果需要多少秒或者毫秒
+    
+        transition-delay 定义过度效果何时开始
+            */
+
+        // translate(x轴，y轴) 
+        // translateX
+        // translateY
+        // 使用:
+            // transform:translate(10px,10px)
+        
+        /*
+         rotate 旋转角度
+         transform：rotate(10edg)；顺时针转10度，如果要逆时针就改负角度即可注意单位一定是deg
+        
+
+        scale缩放
+            最初始值为1(正常大写)
+            比1大就是放大多少倍0.5缩小一半
+            transform:scale(.5)
+       
+            transform-origin 基准点
+            默认为center center
+            left
+            center
+            right
+            length
+            一般在动画之前设置
+            */
+        /*
+        requestAnimationFrame
+        采用系统时间间隔，保持最佳回值效率，不会因为及那个时间过短，造成过度绘制，增加开销；也不会因为间隔时间太长，使用动画卡顿不流畅，让各种网页动画效果能够有一个同意的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果
+
+        优点：
+            1.requestAnimationFrame会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔仅仅跟随浏览器的刷新频率
+            2.在隐藏或不可见的元素中，requestAnimationFrame将不会进行重绘或者回流，这当然就意味着更少的CPU、GPU和内存使用量
+            3.requestAnimationFrame是由浏览器专门为动画提供的API，在运行的时候浏览器会自动优化方法的调用，并且如果页面不是激活状态下的话，动画会自动暂停，有效节省了 CPU开销
+
+            写一个有名自执行函数，里面使用requestAnimationFrame
+        在里面调用有名自执行函数
+        也有一个返回值，返回值数字（编号）
+        let timer;
+        (function move(){
+            timer = requestAnimationFrame(function(){
+                box.style.left = box.offsetLeft + 10 + 'px';
+                move();
+        })
+    })();
+    
+        cancelAnimationFrame(编号)  关闭动画
+        */
+       
+        </script>
+</body>
+</html>

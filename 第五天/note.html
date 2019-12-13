@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+</head>
+
+<body>
+
+    <ul>
+     <li>1</li>
+     <li>2</li>
+     <li>3</li>
+
+    </ul>
+     <script>
+          /* 
+     call(that,多个)
+     apply(that,两个)
+     bind(that,多个)
+     共同特点都是，第一个参数都是改变this指向的，函数天生自带的
+          null，undefined(无效的)传了都是window
+
+     1.this是实例
+     2.默认return实例土国return为引用类型就为引用类型
+     3.实例的原型链 === 构造函数的原型
+     4.可以不加括号调用
+     */
+          // 重写New
+          /*      function New(fn,...arg){
+                    let obj = new Object;
+                    let callback = fn.call(obj,...arg)//把构造函数的this改为实例
+                    //使实例的原型链等于构造函数的原型
+                    obj.__proto__ =fn.prototype;
+
+                    if(callback !==null && typeof callback ==='object' || typeof callback === 'function'){
+                         return callback;
+                    }
+                         return obj
+                    }
+                    function fn(name){
+                         this.name = name
+                    }
+                    let f  = New(fn,'111')
+                    console.log(f); */
+
+          /*
+               class类名{
+                    constructor(name){
+                         //给自身添加属性或者方法，就必须要写constructor
+                    }
+               }
+          */
+        /*   class Fn {
+               constructor(name, sex) {
+                    this.name = name;
+                    this.sex = sex;
+               }
+               a() {
+                    console.log(this.name, this.sex);
+               }
+          }
+          Fn.prototype.hh = 45
+          let p = new Fn('哈哈', '男')
+          console.log(p);
+          console.dir(Fn);
+          console.log(p.hh); */
+               /*
+               所有的数据都有一个toString的方法，但是写法是不一样的唯独Object的toString能够去检测当前的数据类型，所以可以把this改变，达到我们的目的
+          */
+
+          /*
+          Array的toString，除了数组本身别的也能检测数据类型
+          */
+          // console.log(Array.prototype.toString.call(true));
+
+          /*
+          Array.from()  把类数组转成数组
+          */
+          /* var lis = document.querySelectorAll('li')
+          
+          console.log(lis);
+          
+          console.log(Array.from(lis));
+          Array.prototype.mySlice = function(){
+               //this 是个数组。把this改成类数组
+               return [...this];
+          }
+          let ary = [1,2,3]
+          console.log(ary);
+          console.log(ary.mySlice());
+          var arr = Array.from(lis);
+          console.log(arr);
+          
+          arr.forEach((ele,i)=>{
+               ele.onclick = function(){
+                    alert(i)
+               }
+          })
+          console.log(Math.max.apply(null,[1,2,3])); */
+
+          /*
+          数据的解构赋值:
+               let[x,y] = [a]
+               声明的时候一定要是个数组，左右两边的结构保持一致
+          */
+          /*
+          在声明的时候使用块声明，块中放对象的key值，这里的key值一定要和结构对象的key值名字要一直
+          let {key1,key2} = {key1:val1,key2:val2}
+          如果要取别名，使用:新定义的名字即可
+          let {key1:k,key2} = {key1:val1,key2:val2}
+          此时的key1已经访问不到了，要访问就报错，只能访问k，k就代表key1
+          */
+     </script>
+</body>
+
+</html>

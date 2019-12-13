@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+</head>
+
+<body>
+
+
+     <script>
+          /*
+       把下面str的name，age，say换成obj中的value值
+    */
+          //     let obj = {
+          //         name:'小明',
+          //         age:18,
+          //         say:'好好学习，天天向上'
+          //     }      
+
+          //      let str  = '我的名字叫${name},年龄是${age},我想说：${say}';
+          //      let i = 0;
+          //      let s = str.replace(/\${(\w+)}/g,(...arg)=>{
+          //           let[,key] = arg;
+          //           return obj[key];
+
+          //      })
+          //      console.log(s);
+
+
+          let str2 = 'hdd82nxa89a3axdma2naejaaxaa8n2xdanja2cah2hnadhioamwajexnad8mdahiodn';
+          let num = 0;
+          // let obj = {};
+         
+          // let key = '';
+          // let ary = [];
+
+          // for (let i = 0; i < str2.length; i++) {
+          //      //全局查找每次字符出现了多少次
+          //      if (!ary.includes(str2[i])) {
+          //           let re = new RegExp(str2[i], 'g');
+          //           let len = str2.match(re).length;
+          //           obj[len] = str2[i];
+          //           ary.push(str2[i]);
+          //      } else {
+          //           continue;
+          //      }
+          // }
+          // let keys = Object.keys(obj); //可以把对象的key拿出来，是个数组
+          // let vals = Object.values(obj) //可以把对象的value都拿出来，是个数组
+
+          // console.log(ary);
+          // console.log(keys[keys.length - 1], vals[vals.length - 1]);
+
+
+          let str3 = str2.split('').sort().join('');
+          // console.log(str3);
+               str3.replace(/([\da-z])\1+/g,($0,$1)=>{//$0是每次匹配的重复项，$1匹配谁
+                    if($0.length>num){
+                         num = $0.length;
+                         key = $1;
+                    }
+               })
+               console.log(`${key}出现的次数最多,出现了${num}次`);
+
+               
+          
+     </script>
+</body>
+
+</html>

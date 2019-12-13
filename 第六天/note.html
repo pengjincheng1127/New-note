@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+</head>
+
+<body>
+
+
+     <script>
+          /*
+     面向对象的特征:
+          封装、继承、多态
+     继承：
+          子类具有父类的一部分特征(这部分相同的特征是从父类继承下来的，自己还有自己的特征)
+     继承的写法可以让子类的代码量减少很多，从而达到高内聚，低耦合的目的，减少开发成本
+     */
+          /*  function Fn(name,eat){
+                this.name = name;
+                this.eat = eat;
+           }
+           Fn.prototype.say = function(){
+                console.log('我的名字叫'+this.name+',我爱吃'+this.eat)
+           }
+           Fn.prototype.body = function(){
+                console.log(this.name+'说：我很胖');
+           }
+           let p1 = new Fn('冉德鹏','肉')
+           p1.say()
+           p1.body()
+           console.log(p1); */
+
+          /*
+               继承属性：
+                    调用父类，通过call把this变为子类的实例即可(call继承)
+
+                    function Fun(name,age){                    
+                         Fn.call(this,name,age);
+                         console.log(this)
+                    }
+          */
+          /*   function Fn(name,eat){
+                 this.name = name;
+                 this.eat = eat
+            }
+            Fn.prototype.say = function(){
+                 console.log('我的名字叫'+this.name+',我爱吃'+this.eat)
+            }
+            function Fun(name,eat){
+                 Fn.call(this,name,eat)
+            }
+
+            Object.assign(Fun.prototype,Fn.prototype)
+            Fun.prototype.say =function(){
+                 console.log(123);
+                 
+            }
+            
+            
+            let aa = new Fun('冉德鹏','狗粮')
+            let bb = new Fn('赵炎','肉')
+            aa.say()
+            bb.say() */
+
+          /*
+          通过浅拷贝，把父类上原型的方法或者属性都赋值给子类的原型
+          Object.assign(目标对象,源对象)
+          从右往左浅拷贝对象的属性，可以放若干对象
+
+               用于对象的合并将源对象(source)的所有可枚举属性，赋值到目标对象(target)
+
+               如果目标对象和源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性
+
+               如果只有一个参数，Object.assign会直接返回该参数
+
+               原始类型的赋值就是普通赋值了。其实赋值引用类型的目的是B拿到A下面的属性
+                    避免赋址：
+                         需要两个不同的地址
+                         B地址下拥有A地址下的原始类型的数据即可(原始类型的赋值)
+          */
+
+          // let ary = [1,2,3,[4]];
+          // // let ary2 = ary;
+          // // let ary2=[]
+          //      //浅克隆
+          // /*   for(let i =0;i<ary.length;i++){
+          //      //原始数据类型的赋址就是简单赋值关系
+          //      ary2[i]=ary[i]
+          // } */
+          // let ary2 = ary.concat()
+
+          // ary2.push(222)
+          // console.log(ary,ary2);
+
+
+      /*     let ary = [1, 2, [1, 2, {
+               name: [1]
+          }]]
+          // 深度克隆
+          function deepclone(obj) {
+               //看看obj是不是一个对象不是对象就不执行deepclone
+               if (typeof obj !== 'object' && obj !== null) return null;
+               let o = obj.push ? [] : {} //确认传进来的值到底是数组还是对象
+               for (let attr in obj) {
+                    if (typeof obj[attr] === 'object') {
+                         o[attr] = deepclone(obj[attr]);
+                    } else {
+                         o[attr] = obj[attr];
+                    }
+               }
+               return o;
+          }
+          let ary2 = deepclone(ary);
+          console.log(ary2); */
+
+
+          // JSON.parse(JSON.stringify(ary)) *****
+
+
+       /*    function Person(name,age){
+               this.name =name;
+               this.age = age;
+          }
+          Person.prototype.say = function(){
+               console.log('我的名字叫'+this.name);
+          }
+          function Fn(name,age){
+               Person.call(this,name,age)
+          }
+          Fn.prototype = new Person;
+          Fn.prototype.constructor = Fn
+          Fn.prototype.eat =function(){
+               console.log(this.name+'爱吃');
+          }
+          let aa = new Person('冉德鹏',1000) */
+
+          // console.log(aa.constructor);
+          
+       /*    function Person(name,age){
+               this.name = name;
+               this.age = age;
+          }
+          Person.prototype.say = function(){
+               console.log('我的名字叫'+this.name);
+          }
+          function Fn(name,age){
+               Person.call(this,name,age)
+          }
+          Fn.prototype = Object.create(Person.prototype)//寄生组合
+          Fn.prototype.say = function(){
+               console.log('我是'+this.name);     
+          }
+          
+          let p1 = new Person('冉德鹏',888)
+          let p2 = new Fn('王飞',999)
+
+          p1.say();
+          p2.say(); */
+
+          /*
+          通过class种的static可以创建静态方法，只有类才能调用，实例是调用不到的，就算是继承，也只能继承子类去调用，子类的实例是调用不到的
+          */
+         /*  class Person{
+               static eat(){
+                    //静态方法，只有类才能调用，实例是调用不到的
+                    console.log('冉德鹏');
+               }
+               constructor(name,age){
+                    this.name = name;
+                    this.age = age;
+               }
+               say(){
+                    alert('我的名字叫'+this.name)
+               }
+          }
+          class Fn extends Person{
+               //在继承的constructor中，如果要使用this，一定要写super
+               constructor(job,...arg){
+                    //剩余运算符['xxx',19]
+                    //this在super上面是拿不到的
+                    super(...arg);//扩展运算符
+                    this.job = job;
+               }
+               say(){
+                    console.log(this);
+                    
+               }
+          }
+          let p2 = new Fn('吃货','王飞',819)
+          let p1 = new Person('冉德鹏',555)
+          // p2.say()
+          // p1.say()
+          
+          console.log(p2);
+               
+          Fn.eat() */
+          /*
+          函数的三种角色：
+               函数
+               类
+               实例
+
+               function fn(){}->new Function
+               Function是个内置类 ->他也是个函数
+               Function.prototype 给所有的小写function使用也包括他自己
+
+
+          */
+
+     </script>
+</body>
+
+</html>

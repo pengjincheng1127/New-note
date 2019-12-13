@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+     <style>
+               div{
+                   padding:100px;
+               }
+               #box{
+                   background: red;
+                   _position: relative;
+               }
+               #box1{
+                   background: yellow;
+                   position: relative;
+                   border:10px solid #ccc;
+               }
+               #box2{
+                   background: skyblue;
+                   position: absolute;
+                   top:-10px;
+                   border:10px solid #000;
+               }
+               </style>
+</head>
+<body>
+          <div id="box">
+                    <div id="box1">
+                        <div id="box2"></div>
+                    </div>
+                </div>
+
+     <script>
+     
+     class Tools{
+          position(nowEle){
+               let i =0;
+               let l = 0;
+               let cl = nowEle.clientLeft;
+               let ct = nowEle.clientTop;
+               //只要有当前这个元素就一直循环
+               while(nowEle){
+                    i +=(nowEle.offsetLeft + nowEle.clientLeft);
+                    l +=(nowEle.offsetTop + nowEle.clientTop);
+                    nowEle = nowEle.offsetParent;//改变本次定位的父级 为下次循环的当前元素
+               }
+               i=i - cl;
+               l = l - ct;
+
+               return {
+                    i,l
+               }
+          }
+     }
+
+     let t1 = new Tools;
+     let {i,l} = t1.position(box2);
+     console.log(i,l);
+     
+     </script>
+</body>
+</html>

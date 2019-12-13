@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: skyblue;
+    transition: .5s;
+}
+</style>
+<body>
+    <div id="box">
+        <button>按钮</button>
+        <!-- <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul> -->
+
+    </div>
+<ul></ul>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        /*
+        事件三大部分：
+            事件流
+            事件有哪些，作用
+            事件对象
+
+        hover:
+            onmouseenter
+            onmouseleave
+
+            jq中的所有事件，都是on来二次封装，JQ中的事件全部都是事件绑定
+
+            jq的事件对象都是二次封装的，如果要拿到真正的js事件对象
+            ev.originalEvent(原生事件对象)
+
+            jq中阻止冒泡和默认行为，直接return false
+        */
+        
+        // $('#box').hover(function(){
+        //     $('#box').css('background','red')
+        //     console.log(1);
+            
+        // },function(){
+        //     $('#box').css('background','skyblue')
+        //     console.log(2);
+            
+        // })
+
+        //事件监听
+    //     $('#box').delegate('li','click',function(){
+    //    console.log($(this).text());
+    // });
+
+    //   $('#box').on('mouseenter',function(){
+    //     console.log('移入');
+    // })
+
+    // $('#box').on('click','li',function(){
+    //     console.log('点击'+this.innerText);
+    // });
+
+    //   $('#box').hover(function(){
+    //     $(this).css({background:'skyblue'});
+    //     //解绑上一次，再添加一次新的click
+    //     $('button').off().click(function(){
+    //         console.log('发起了一次请求');
+    //     });
+    // },function(){
+    //     $(this).css({background:'green'});
+    // })
+    $('#box').on('click.a',function(){
+        console.log(11);
+    })
+    $('button').on('click',function(){
+        console.log(222);
+    });
+    $('button').mousedown(function(){return false;})
+
+    let ary = ['赵','钱','孙','李'];
+
+    ary.forEach((item,i)=>{
+        let $li = $('<li>'+(i+1)+'</li>');
+        $li.on('click',{data:item},function(ev){
+            console.log(ev);
+            console.log('我姓'+ev.data.data); //存数据的
+        });
+        $('ul').append($li);
+    });
+    </script>
+</body>
+</html>

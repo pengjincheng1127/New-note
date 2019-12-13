@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+/*         * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        
+        }
+        .Bbox{
+            width: 100%;
+            height: 100%;
+            background: skyblue;
+            border: red 1px solid;
+        }*/
+
+        /* .box { */
+            /* width: 139%; */
+            /* height: 60%; */
+            /* background: red; */
+            /* border-radius: 50%; */
+            /* position: absolute; */
+            /* left: -20%; */
+            /* top: -30%; */
+            /* overflow: hidden */
+        /* }  */
+    </style>
+</head>
+
+<body>
+    <!-- <div class="Bbox"> -->
+    <!-- <div class="box"></div> -->
+</div>
+    <script>
+        
+        // let res = Number(':200px'); //NaN
+        // if (res === 200) {
+        //     alert(200);
+        // } else if (res === NaN) {
+        //     alert(NaN);
+        // } else if (typeof res === 'number') {
+        //     alert('number'); //number
+        // } else {
+        //     alert('Invalid Number');
+        // }
+
+
+        // console.log(a); //函数
+        // var a = 12;
+        // function a() {
+        //     console.log(a);
+        //     a = 13;
+        // }
+        // a(); // 因为 var a = 12  不是一个函数不能执行 所以报错
+        // console.log(a);
+
+        // var n = 0;
+
+        // function a() {
+        //     var n = 10;
+
+        //     function b() {
+        //         n++;
+        //         console.log(n); //11
+        //     }
+        //     b();
+        //     return b;
+        // }
+        // var c = a();
+        // c();//12
+        // console.dir(c);
+
+        // console.log(n);//0  闭包
+
+        /*      var a1 = 4,
+                 a2 = [1, 2];
+
+             function b(x, y) {
+                 console.log(arguments);
+                 
+                 arguments[0] = 10;
+                 arguments[1].push(3);
+                 y = [];
+                 console.log(x, y); //10  []
+             }
+             b(a1, a2);
+             console.log(a1, a2); //[1,2,3] */
+
+
+        // function fn(i) {
+        //     return function (n) {
+        //         console.log(n + (i++));
+        //     }
+        // }
+
+        // var f = fn(10); 
+        // f(20); //30
+        // fn(20)(40);//60
+        // fn(30)(50);//80
+        // f(30);//41
+
+        //*****
+        // var x = 3,
+        //     obj = {
+        //         x: 5
+        //     };
+        // obj.fn = (function () {
+        //     this.x *= ++x;   
+        //     return function (y) {
+        //         this.x *= (++x) + y;
+        //         console.log(x);
+        //     }
+        // })();
+        // var fn = obj.fn;
+        // obj.fn(6);
+        // fn(4);
+        // console.log(obj.x, x);
+
+        /* 
+                //example 1
+                let a = {},
+                    b = '0',
+                    c = 0;
+                a[b] = '珠峰';
+                a[c] = '培训';
+                console.log(a[b]);
+         */
+        /*   //example 2
+        let a = {},
+            b = Symbol('1'),
+            c = Symbol('1');
+        a[b] = '珠峰';
+        a[c] = '培训';
+        console.log(a[b]);
+ */
+        // //example 3
+        // let a = {},
+        //     b = {
+        //         n: '1'
+        //     },
+        //     c = {9/
+        //         m: '2'
+        //     };
+        // a[b] = '珠峰';
+        // a[c] = '培训';
+        // console.log(a[b]);
+        // console.log(typeof BigInt);
+      
+    </script>
+</body>
+
+</html>

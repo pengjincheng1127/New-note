@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/1.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="box">
+        <nav>
+            <span style="color: brown;">排序</span>
+            <a href="javascript:;" data-name=time>
+                上架时间
+                <!-- <i class="up"></i>
+                <i class="down "></i> -->
+
+            </a>
+            <a href="javascript:;" data-name=hot>
+                热度
+                <!-- <i class="up "></i>
+                <i class="down "></i> -->
+            </a>
+            <a href="javascript:;" data-name=price>
+                价格
+                <!-- <i class="up"></i>
+                <i class="down"></i> -->
+            </a>
+
+        </nav>
+        <ul class="list" id="ul">
+           <!--  <li>
+                <img src="./img/1.jpg">
+                <p>商品名称:<span>1111</span></p>
+                <p>上架时间:<span>2019</span></p>
+                <p>商品热度:<span>122</span></p>
+                <p>商品价格:<span>213</span></p>
+            </li> -->
+        </ul>
+    </section>
+    <script src="tools.js"></script>
+    <script>
+        fetch('./json/product.json')
+            .then(d => d.json())
+            .then(data => {
+                let newaa = data.concat()
+
+                function render(newaa) {
+                    let lis = newaa.map(({
+                        title,
+                        img,
+                        price,
+                        time,
+                        hot
+                    }, i) => {
+                        return (
+                            ` <li>
+                <img  onerror=src='./img/timg.jpg'; data-src="${img}" alt="">
+                <p >商品名称:<span>${title.substr(0,5)}</span></p>
+                <p>上架时间:<span>${time}</span></p>
+                <p>商品热度:<span>${hot}</span></p>
+                <p>商品价格:<span>${price}</span></p>
+                </li>`
+                        );
+                    }).join('');
+                    ul.innerHTML = lis
+                }
+                render(newaa);
+                // class Tab {
+                //     constructor(id) {
+                //         this.a = document.querySelectorAll('a');
+
+                //     }
+                //     say() {
+                //         console.log(this.a);
+
+                //     }
+                // }
+                // Tab.prototype.change = function () {
+                //     this.a.forEach((ele, i) => {
+                //         ele.onoff = true;
+                //         ele.onclick = function () {
+                //             // ele.onoff = true;
+                //             //  console.log(this.dataset.name);
+                //             let i = this.dataset.name;
+                //             Tab.prototype.hasSort(i);
+                //         }
+
+                //     })
+                // }
+                // Tab.prototype.hasSort = function (i) {
+
+                //     // console.log(i);
+                //     // this.onoff = true;
+                //     // console.log(this.w);
+                    
+                //     const that = this
+                //     if (this.onoff===true) {
+                //         newaa.sort((a, b) => {
+                //             // console.log(this.onoff);
+                //             // console.log(1);
+                            
+                //             if (i === 'time') {
+                //                 return new Date(a.time) - new Date(b.time)
+                //             }
+                //             return a[i] - b[i]
+                //         })
+                //        alert('升序')
+                //         // this.children[0].classList.remove('activeup')
+                //         // this.children[1].classList.add('activedown')
+                //     } else {
+                //         newaa.sort((a, b) => {
+                //             // console.log(this.off);
+                //             // console.log(2);
+                            
+                //             if (i === 'time') {
+                //                 return new Date(b.time) - new Date(a.time)
+                //             }
+                //             return b[i] - a[i]
+                //         })
+                //        alert('降序')
+                //         // this.children[0].classList.add('activeup')
+                //         // this.children[1].classList.remove('activedown')
+                //     }
+                //     this.onoff = !this.onoff;
+                //     render(newaa);
+                // }
+
+
+
+                // let b = new Tab('box')
+                // b.change()
+
+                    /*
+                    可视区的高度，滚动条的距离，每张图片的绝对位置
+                    */
+        const ih = window.innerHeight; //可视区的高度
+        const li = document.querySelectorAll('#ul li');
+        const t1 = new Tools;
+        window.onscroll = fn;
+        fn();
+        // console.log(ih,li,t1);
+        
+        function fn(){
+            console.log(window.pageYOffset);//滚动条的距离
+            let num = 50;
+            li.forEach((ele,i) => {
+                let {t} = t1.position(ele); //每张图片的绝对位置
+                if(ih + window.pageYOffset >= t && !ele.children[0].src){ 
+                    console.log(ele); //添加src属性之后就不需要再次添加src了
+                    //把图片dataset属性中的src变成真正的src，图片就能正常显示
+                    ele.children[0].src = ele.children[0].dataset.src; 
+                    setTimeout(() => {
+                        console.log(ele.children[0]);
+                        
+                        ele.children[0].style.opacity = 1;
+                        
+                    }, num*i);
+                }
+                console.log(t);
+            });  
+        }
+    });
+    </script>
+</body>
+
+</html>

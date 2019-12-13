@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        top: 50px;
+        bottom: 10px;
+        left: 0;
+        /* transition: .5s; */
+    }
+</style>
+
+<body>
+    <button id="btn">按钮</button>
+    <div id="box"></div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        /*
+        hide show 也是有动画的
+
+        在做jq动画时，记得使用stop（）,把前面的动画清除
+    */
+        // $('#btn').click(function(){
+        // $('#box').hide('slow')
+        // $('#box').toggle(900) //改变宽高、透明度 可以重复点
+        // $('#box').slideToggle(500); //改变高度
+        // $('#box').stop().fadeToggle(200); //隐藏 显示
+        // })
+        $(document).click(function () {
+            // $('#box').css({
+            //     left:400
+            // })
+
+            // $('#box').delay(500).animate({
+            //     left:400
+            // },1000);
+
+            setInterval(() => {
+                $('#box').animate({
+                    left: $('#box').offset().left + 100
+                }, 500);
+                // if($('#box').css('left')==='500px'){
+                //     // console.log(1);
+                //     $('#box').stop().animate({
+                //     top: $('#box').offset().top + 50
+                // }, 500);
+                // }
+            }, 1000);
+        })
+        // console.log($('#box').css('left')==='100px');
+        
+    </script>
+</body>
+
+</html>

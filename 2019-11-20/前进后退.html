@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 50px;
+            height: 50px;
+            background: skyblue;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .box2 {
+            width: 20px;
+            height: 20px;
+            background: seagreen;
+            border-radius: 50%;
+            position: absolute;
+            top: 0px;
+            left: 15px;
+            transition: 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="box2"></div>
+    </div>
+    <script>
+        let obj = {
+            "up": false,
+            "down": false,
+            "left": false,
+            "right": false,
+            "open": false
+        }
+        document.onkeydown = function (ev) {
+
+            if (ev.keyCode == 87) { //上
+                obj.up = true;
+            }
+            if (ev.keyCode == 83) { //下
+                obj.down = true;
+            }
+            if (ev.keyCode == 65) { //左
+                obj.left = true;
+            }
+            if (ev.keyCode == 68) { //右
+                obj.right = true;
+            }
+            if (ev.keyCode == 13) {
+                obj.open = true
+            }
+        }
+        document.onkeyup = function (ev) {
+            if (ev.keyCode == 87) { //上
+                obj.up = false;
+            }
+            if (ev.keyCode == 83) { //下
+                obj.down = false;
+            }
+            if (ev.keyCode == 65) { //左
+                obj.left = false;
+            }
+            if (ev.keyCode == 68) { //右
+                obj.right = false;
+            }
+            if (ev.keyCode == 13) {
+                obj.open = false
+            }
+        }
+
+        setInterval(() => {
+            
+            if (obj.up) { //上
+                box.style.top = box.offsetTop - 10 + 'px';
+                // console.log(1);
+                
+                // console.log(1);
+            }
+            if (obj.down) { //下
+                box.style.top = box.offsetTop + 10 + 'px';
+                // console.log(2);
+            }
+            if (obj.left) { //左
+                box.style.left = box.offsetLeft - 10 + 'px';
+                // console.log(3);
+            }
+            if (obj.right) { //右
+                box.style.left = box.offsetLeft + 10 + 'px';
+                // console.log(4);
+            }
+            if (obj.open) {
+                let div = document.createElement('div');
+                div.className = 'box2';
+                box.append(div);
+                setTimeout(() => {
+                    div.style.top = -1000 + 'px';
+                });
+
+            }
+        }, 20);
+    </script>
+</body>
+
+</html>

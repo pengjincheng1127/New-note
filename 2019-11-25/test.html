@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	body{
+	margin: 0 auto;
+	margin-left: 450px;
+
+	}
+	table{
+		width: 400px;
+		height: 100px;
+		border-collapse: collapse;
+	}
+	tr,td,th{
+		border: solid 1px #000;
+	}
+
+	.de{
+		text-align: center;
+	}
+	table .de a{
+		color: #f00;
+		text-decoration: none;
+	}
+	ul,li{
+			list-style: none;
+		}
+	form{
+			width: 400px;
+			height:150px;
+			margin-top: 50px;
+			margin-right: 20px;
+		}
+		fieldset ul{
+			padding: 50px;
+		}
+		fieldset ul li{
+			height: 50px;
+			line-height: 50px;
+		}
+
+	</style>
+</head>
+<body>
+<table>
+	<thead>
+	<tr>
+		<th>学号</th>
+		<th>姓名</th>
+		<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1001</td>
+			<td>张三</td>
+			<td class="de"><a href="#">删除</a></td>
+		</tr>
+		<tr>
+			<td>1002</td>
+			<td>张三</td>
+			<td class="de"><a href="#">删除</a></td>
+		</tr>
+		<tr>
+			<td>1003</td>
+			<td>张三</td>
+			<td class="de"><a href="#">删除</a></td>
+		</tr>
+		<tr>
+			<td>1004</td>
+			<td>张三</td>
+			<td class="de"><a href="#">删除</a></td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	<form>
+		<fieldset>
+			<legend>学生信息</legend>
+			<ul>
+				<li>
+					<label>学号</label>
+					<input type="text" name="no"placeholder="请输入学号">
+				</li>
+				<li>
+					<label >姓名</label>
+					<input type="text" name="name" placeholder="请输入姓名">
+				</li>
+				<li>
+					<button type="button" name="add" value="添加">添加</button>
+				</li>
+			</ul>
+		</fieldset>
+	</form>
+
+</div>
+
+<script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+$('tbody').delegate('.de a','click',function(event) {
+
+	$(this).parents('tr').remove();
+
+});
+
+
+$(':button[name=add]').click(function(event){
+    // 获取用户输入的值
+    var no = $(':input[name=no]').val();
+    var name = $(':input[name=name]').val();
+
+    var tr = $('<tr><td>'+no+'</td><td>'+name+'</td><td class="de"><a href="#">删除</a></td></tr>')
+    $("tbody").append(tr);
+  })
+
+</script>
+</body>
+</html>

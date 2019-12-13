@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="baidu.css" />
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="baidu">
+			<ul id="list">
+				<li>
+					<div><input type="checkbox"></div>
+					<span>泡沫</span>
+					<span>邓紫棋</span>
+				</li>
+				<li>
+					<div><input type="checkbox"></div>
+					<span>说爱你</span>
+					<span>蔡依林</span>
+				</li>
+				<li>
+					<div><input type="checkbox"></div>
+					<span>稻香</span>
+					<span>周杰伦</span>
+				</li>
+				<li>
+					<div><input type="checkbox"></div>
+					<span>我的梦</span>
+					<span>张靓颖</span>
+				</li>
+				<li>
+					<div><input type="checkbox"></div>
+					<span>怎么说我不爱你</span>
+					<span>萧敬腾</span>
+				</li>
+				<li>
+					<div>️<input type="checkbox"></div>
+					<span>无处安放</span>
+					<span>白若溪</span>
+				</li>
+			</ul>
+			<div class="select">
+				<span class="selectAll"><input type="checkbox" id="All"><span>全选</span></span>
+				<div class="others">
+					<span><em></em>收藏</span>
+					<span><em></em>添加</span>
+					<span><em></em>删除</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		let newBox = document.getElementById('list');
+		let newList = list.getElementsByTagName('li');
+		let check = document.querySelectorAll('#list input')
+		let Allbtn = document.getElementById('All');
+		// console.log(Allbtn.checked);
+		// console.dir(check);
+		for (let i = 0; i < newList.length; i++) {
+			let cur = newList[i];
+			cur.style.background = i % 2 === 0?'#fff':'#ddd';//隔行变色
+			cur.onmouseover = function () {
+				this.style.background = 'lightblue';//鼠标移入变色
+			}
+			cur.onmouseout = function () {//鼠标移出变色
+				if(check[i].checked===false){
+					this.style.background =	i % 2 === 0?'#fff':'#ddd';
+				}
+				
+			}
+		}
+
+		let ary = [
+				{id:0,checked:false},
+				{id:1,checked:false},
+				{id:2,checked:false},
+				{id:3,checked:false},
+				{id:4,checked:false},
+				{id:5,checked:false}
+   				 ];
+
+	 ary.forEach((item,i)=>{
+        check[i].checked = item.checked;
+        check[i].onclick = function(){ 
+            ary[i].checked = this.checked;
+            Allbtn.checked = ary.every(item=>{
+			 return item.checked === true
+			  });
+        }
+
+
+	   Allbtn.onclick=function(){
+	   if(Allbtn.checked === true){
+
+		ary.forEach((item,i)=>{
+			item.checked = true;
+		})
+		for(let i =0;i<check.length;i++){
+			check[i].checked = true;
+			newList[i].style.background = 'lightblue';
+			// console.log(check[i].checked);
+		}
+
+	   }else{
+		   
+		ary.forEach((item,i)=>{
+			item.checked = false;
+		})
+		for(let i =0;i<check.length;i++){
+			check[i].checked = false;
+		newList[i].style.background =	i % 2 === 0?'#fff':'#ddd';
+			// console.log(check[i].checked);
+		}
+	   }
+	}
+
+    });
+	</script>
+</body>
+
+</html>

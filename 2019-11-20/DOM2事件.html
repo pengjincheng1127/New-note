@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        padding: 100px;
+    }
+
+    #box {
+        background: red;
+        ;
+    }
+
+    #box1 {
+        background: skyblue;
+    }
+
+    #box2 {
+        background: greenyellow;
+    }
+
+    #btn {
+        background: yellow;
+    }
+</style>
+
+<body>
+
+    <body>
+        <div id="box">
+            <div id="box1">
+                <div id="box2">
+                    <button id="btn">按钮</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            box.addEventListener('click', function () {
+                alert(1);
+            }, false);
+            box.addEventListener('click', function () {
+                alert('a');
+            }, true);
+
+
+            box1.addEventListener('click', function () {
+                alert(2);
+            }, false);
+            box2.addEventListener('click', function () {
+                alert(3);
+            }, false);
+
+
+            btn.addEventListener('click', function () {
+                alert(4);
+            }, false);
+            btn.addEventListener('click', function () {
+                alert('d');
+            }, true);
+
+
+            box1.addEventListener('click', function () {
+                alert('b');
+            }, true);
+            box2.addEventListener('click', function () {
+                alert('c');
+            }, true);
+        </script>
+    </body>
+
+</html>

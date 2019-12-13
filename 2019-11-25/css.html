@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box{
+        width: 200px;
+        height: 200px;
+        background: lightskyblue;
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script>
+    // $('#box').hide(); //隐藏相当于 display:none
+    $('#box').show('slow'); //显示
+
+    // $('#box').fadeOut('') //淡出
+    // $('#box').fadeTo('slow',.5) //调整透明度
+    
+    </script>
+</body>
+</html>
