@@ -846,7 +846,7 @@ ready事件  当DOM加载完成时触发，只管标签，不管静态资源(适
 
 
 > !important(10000) >  style(1000) > #(100) > 类，伪类(10) > targe，伪元素(1) > *+~ (0)
-
+ 
 > div[class|="a"]  class要么是a要么是a-开头的
 
 > nth-child(n)选择父元素的第N个子元素，N是整数（1,2,3）、关键字（even、odd）、公式（2n+1），n的初始值为1.
@@ -943,6 +943,14 @@ ready事件  当DOM加载完成时触发，只管标签，不管静态资源(适
      - 监听数据响应
      - 接收到数据
 
+     XMLHttpRequest IE除了IE6别的版本都有这个对象(IE6用ActiveXObject),但是每个版本的属性是不一样的
+
+     IE9以下浏览器是没有onload的，但是所有浏览器都支持onreadystatechange事件
+
+     timeout 设置超时时间
+     ontimeout 监听超时回调
+
+
 ### GET和POST
 ```
 
@@ -959,7 +967,6 @@ GET 是通过url进行请求(4步就发送请求了)
      在低版本IE下有缓存问题(/get?user=liucheng)
      第一次和第二次请求的url是一致的那么第二次会走第一次的缓存
 
-     解决：
           第一种：不用get用post
           第二种:  每次url不一致
                /get?user=liucheng&random=3213321321
@@ -985,4 +992,70 @@ GET 是通过url进行请求(4步就发送请求了)
 
           必须添加请求头
           xhr.setRequestHearder('content-type','application/x-wwww-form-urlencoded')
+
+
+          
 ```
+
+### fetch的 post
+```javascript
+fetch(url,{
+     method:'post',
+     headers:{
+          'content-type':application/x-www-form-urlencoded
+     },
+     body:'key=val&key2=val2'
+     也可以写成
+     body:''+new URLSearchParmas({
+          key:val,
+          key2:val2
+          如果value是中文还会帮我们转成URI编码
+     })
+})
+```
+
+### 请求头和响应头
+
+General
+> Request URL 请求的地址
+
+> Request Method 请求的方式 get post HEAD  DELETE PUT...
+
+> Status Code 状态码
+
+> Remote Address 当前页面的端口号
+
+
+Response Headers (响应头) -> 服务器发给你的东西（接收到的）
+Request Headers (请求头) -> 发给服务器的东西(发给别人的)
+
+Query String Parameters （请求体） 
+
+### http状态码 1-6开头的
+> 100 服务器已经接受请求，希望客户端继续发送请求
+
+> 200 - 207 都是成功
+
+> 301 永久重定向
+
+> 302 临时重定向
+
+> 304 一种缓存
+
+> 400 就是有误的意思
+
+> 401 当前请求需要用户验证
+
+> 403 服务器已经理解请求，但是拒绝执行它
+
+> 404 请求失败，请求所希望得到的资源未被在服务器上发现
+
+> 5字开头的是服务器的错误
+
+> 500 服务器的错误
+
+> 501 服务器不支持当前请求所需要的某个功能
+
+> 502 作为网关或者代理工作的服务器尝试执行请求时，从上游服务器收到无效的响应
+
+> 503 由于临时的服务器维护或者过载，服务器当前无法处理请求 
