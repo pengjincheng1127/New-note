@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+    /*
+    localStorage
+        前端的本地存储
+        生命周期(跟域名走)
+            只要不删除就永远留着
+        
+
+    增:
+        localStorage.setItem(key,cal)
+    删：
+        localStorage.removeItem(key)
+    查：
+        localStorage.getItem(key)
+    清除:
+        localStorage.clear()
+    */
+
+    //不能结构解析 因为this为window
+    // localStorage.setItem('user','ydz')
+    localStorage.setItem('user','rdp')
+    // localStorage.clear()
+    console.log(localStorage.getItem('user'));
+    </script>
+</body>
+</html>

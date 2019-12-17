@@ -850,7 +850,7 @@ ready事件  当DOM加载完成时触发，只管标签，不管静态资源(适
 > div[class|="a"]  class要么是a要么是a-开头的
 
 > nth-child(n)选择父元素的第N个子元素，N是整数（1,2,3）、关键字（even、odd）、公式（2n+1），n的初始值为1.
-
+ 
 > nth-last-child(n)选择父元素的倒数第n个子元素(所有子元素中查找)
 
 > nth-of-type(n) 只在同一种类型的原型上查找，第n个元素
@@ -875,7 +875,7 @@ ready事件  当DOM加载完成时触发，只管标签，不管静态资源(适
         居中对齐:
             justify-content:center
 
-        第一个和最后一个分别顶着父级的边，中间平均分
+        第一个和最后一个分别顶着父级的边，中间平均分 
             justify-content:space-between
 
         平均分配剩余的空间
@@ -883,7 +883,20 @@ ready事件  当DOM加载完成时触发，只管标签，不管静态资源(适
 
         间距平均分配
             justify-content: space-evenly;
+## rem 公式
 
+```js
+
+function refreshRem() {
+            var desW = 750, //设计图的宽度
+                winW = window.screen.width, //document.documentElement.clientWidth||document.body.clientWidth;
+                ratio = winW / desW,
+                html = document.documentElement;
+            html.style.fontSize = ratio * 100 + 'px';
+        }
+        refreshRem();
+        window.addEventListener('resize', refreshRem);
+```
 
 ## AjAX
      - Asynchronous（异步） Javascript（js） And（和） XML（标记语言,数据）
@@ -964,7 +977,7 @@ GET 是通过url进行请求(4步就发送请求了)
 
      请求体积是有限的（会根据浏览器的标准来限制）传大的东西传不了
 
-     在低版本IE下有缓存问题(/get?user=liucheng)
+     在低版本IE下有缓存问题(/get?user=liucheng)   
      第一次和第二次请求的url是一致的那么第二次会走第一次的缓存
 
           第一种：不用get用post
@@ -1059,3 +1072,48 @@ Query String Parameters （请求体）
 > 502 作为网关或者代理工作的服务器尝试执行请求时，从上游服务器收到无效的响应
 
 > 503 由于临时的服务器维护或者过载，服务器当前无法处理请求 
+
+
+
+### xhr有upload这个属性是一个对象，代表上传时候的事件
+
+xhr.upload.onprogress 上传时候的进度
+
+```
+ev里面有total -> 文件的总体积
+ev里面有loaded -> 当前上传的体积
+
+    ev.loaded / ev.total  =  0-1
+
+```
+刷新之后还有（数据是不变的） 
+
+    1.刷新之后请求一次数据
+
+    2.把数据存储在浏览器中
+        cookie 
+            - 后端技术，基于浏览器实现的
+            - 用来存储用户的操作信息
+            - 一次http请求（填写用户名密码），后端只知道这次请求某人是否合法，http是无状态的，不能记录某人登录过账户
+            所以说使用cookie去存储某个人操作，下次请求的时候，把上一次的操作发给后端，就知道某人是否登录过账户
+
+            cookie的生命周期
+            默认的生命周期是当浏览器关闭，生命就结束
+
+            如果不要走默认的生命周期使用 expires
+
+            expires=需要设置的时间 
+
+            let o = new Date();
+            o.setDate(new Date().getDate() + 1);  //比当前时间多1天
+
+            document.cookie = 'name=pq; expires='+o;
+
+            cookie，在以前每个域名只能设置几个或者几十个，字字千金，现在据说有5M
+
+            cookie必须使用服务器环境
+
+        
+            
+        localStorage
+        sessionStorage
