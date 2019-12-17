@@ -33,6 +33,7 @@
         f.append('image',file.files[0]);
         xhr.send(f);
         // xhr.send('image='+file.files[0]);  file.value是字符串
+
         xhr.onload = function(){
             console.log(xhr.responseText);
             
