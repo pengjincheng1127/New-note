@@ -51,3 +51,4 @@ function render(ary){
     let html = ary.map(item=>`<li>${item}</li>`).join('');
     ul2.innerHTML = html
 }
+

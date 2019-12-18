@@ -690,7 +690,7 @@ let a = 10;
      p.then(function(data){
 
      })
-
+     
 
      JSON 取值是不方便的可以使用JSON.parse()把JSON转成对象
      对象转JSON -> JSON.stringift()
@@ -965,7 +965,7 @@ function refreshRem() {
 
 
 ### GET和POST
-```
+```               
 
 GET 是通过url进行请求(4步就发送请求了)
      http://www.baidu.com:88/get?user=lilei#age=18
@@ -1094,8 +1094,7 @@ ev里面有loaded -> 当前上传的体积
         cookie 
             - 后端技术，基于浏览器实现的
             - 用来存储用户的操作信息
-            - 一次http请求（填写用户名密码），后端只知道这次请求某人是否合法，http是无状态的，不能记录某人登录过账户
-            所以说使用cookie去存储某个人操作，下次请求的时候，把上一次的操作发给后端，就知道某人是否登录过账户
+            - 一次http请求（填写用户名密码），后端只知道 ，把上一次的操作发给后端，就知道某人是否登录过账户
 
             cookie的生命周期
             默认的生命周期是当浏览器关闭，生命就结束
@@ -1117,3 +1116,4 @@ ev里面有loaded -> 当前上传的体积
             
         localStorage
         sessionStorage
+
