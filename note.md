@@ -1,4 +1,4 @@
-     # 第一天  git和github
+# 第一天  git和github
 
 - git:版本控制工具
 
@@ -982,8 +982,8 @@ GET 是通过url进行请求(4步就发送请求了)
 
           第一种：不用get用post
           第二种:  每次url不一致
-               /get?user=liucheng&random=3213321321
-               /get?user=liucheng&random=3213325748
+               /get?user=liuchengz&random=3213321321
+               /get?user=liucheng&rando m=3213325748
 
      输入的内容是中文的时候，在IE下会出现错误请求和返回是因为IE的低版本在解析中文的时候解析会有问题
 
@@ -1092,7 +1092,7 @@ ev里面有loaded -> 当前上传的体积
 
     2.把数据存储在浏览器中
         cookie 
-            - 后端技术，基于浏览器实现的
+            - 后端技术，基于浏览器实现的 
             - 用来存储用户的操作信息
             - 一次http请求（填写用户名密码），后端只知道 ，把上一次的操作发给后端，就知道某人是否登录过账户
 
@@ -1101,7 +1101,7 @@ ev里面有loaded -> 当前上传的体积
 
             如果不要走默认的生命周期使用 expires
 
-            expires=需要设置的时间 
+            expires=需要设置的时间      
 
             let o = new Date();
             o.setDate(new Date().getDate() + 1);  //比当前时间多1天
@@ -1117,3 +1117,35 @@ ev里面有loaded -> 当前上传的体积
         localStorage
         sessionStorage
 
+
+     XHR（浏览器自带的api）和axios（基于这个XHR来封装的一个js库）
+     
+
+### Generator
+      调用 Generator函数后，该函数并不执行，返回的也不是函数运行结果
+        而是一个执行内部状态的指针对象，也就是遍历器对象(Iterator Object)
+
+        总结：调用Generator函数，返回一个遍历器对象，代表Generator函数的内部指针，一开始函数是不会执行的，因为他是个状态对象
+
+        如何让这个Generator函数执行？
+        每次调用遍历器对象的next方法，就会返回一个有着value和done两个属性的对象{value:xx,done:false}
+
+        value属性表示当前的内部状态的值，是yield或者return表达式候面那个表达式的值:
+
+        done属性是一个布尔值，表示是否遍历结束。
+        false代表没结束，true代表结束
+
+### for of
+     统一的遍历api
+          for of
+
+          一个数据结构只要部署了Symbol.iterator属性就被视为具有iterator接口，就可以用for of循环遍历他的成员也就是说，for of 循环内部调用的是数据结构的Symbol.iterator方法
+
+          要遍历key -> ary.keys();
+          要遍历value ->ary.values()
+          都要遍历 -> ary.entries()
+
+          字符串。数组。Map,set,querSelectorAll都有Symbol.iterator
+
+
+     Iterator 的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；二是使得数据结构的成员能够按某种次序排列；三是ES6创造了一种新的便利命令for...of循环，Iterator接口主要供for...of消费  

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+        调用 Generator函数后，该函数并不执行，返回的也不是函数运行结果
+        而是一个执行内部状态的指针对象，也就是遍历器对象(Iterator Object)
+
+        总结：调用Generator函数，返回一个遍历器对象，代表Generator函数的内部指针，一开始函数是不会执行的，因为他是个状态对象
+
+        如何让这个Generator函数执行？
+        每次调用遍历器对象的next方法，就会返回一个有着value和done两个属性的对象{value:xx,done:false}
+
+        value属性表示当前的内部状态的值，是yield或者return表达式候面那个表达式的值:
+
+        done属性是一个布尔值，表示是否遍历结束。
+        false代表没结束，true代表结束
+    */
+        // function* fn(){
+        //     console.log(1);
+        //     yield 'hello';
+        //     console.log(2);
+        //     return 3;
+        // }
+        // let f = fn();
+        // console.log(f); //fn {<suspended>}
+        // console.log(f.next());//输出1 和yield的hello done为false 因为没有遍历结束
+        // console.log(f.next());//输出下面的 2 和return 3 done为true 遍历结束
+
+    /*     function* gen(){
+           let a =  yield 1+1+1;
+            
+        }
+        console.log(gen().next().value);
+        
+        function* fn(){
+            //同步编程函数，这个函数就算有异步也算同步
+            console.log(1);
+            let a = yield //'异步数据';
+            console.log(a);
+
+        }
+
+        let f = fn();
+        f.next()
+        // console.log(  f.next().value);
+       
+         setTimeout(()=>{
+            f.next('异步的数据已经到手')
+        },1000)
+   */
+
+/*         function* foo(x){
+            var y = 5 * (yield (x+2));
+            var z = yield y;
+            return (x+y+z)
+        }
+        var a = foo(3);//遍历对象
+        console.log(a);
+        console.log(a.next());
+        console.log(a.next(2));
+        console.log(a.next(6)); */
+        
+
+     /*    function* fnn(){
+            yield '1';
+            yield '2';
+        }
+        function* ff(){
+            yield* fnn();
+            yield '3';
+        }
+        for(let i of ff()){
+            console.log(i);
+        } */
+
+        /* let a = (function*(){
+            yield '1'
+        })()
+        console.log(a.next().value); */
+        
+/*         function* f(g1,g2){
+            yield* g2();
+            yield* g1();
+        }
+        let ff = f(function*a(){
+            yield 1
+            },function* b(){
+                yield 2;
+            })
+            console.log(ff);;
+            for(let i of ff){
+                console.log(i);
+                
+            }
+             */
+
+/*                 function* aa(){
+                    console.log(this);
+                    this.a =1;
+                    
+                }
+                let obj = {};
+                let a = aa();
+                a.next();
+                console.log(obj.a);
+                 */
+        
+</script>
+</body>
+</html>
