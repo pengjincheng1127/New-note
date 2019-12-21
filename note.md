@@ -1149,3 +1149,83 @@ ev里面有loaded -> 当前上传的体积
 
 
      Iterator 的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；二是使得数据结构的成员能够按某种次序排列；三是ES6创造了一种新的便利命令for...of循环，Iterator接口主要供for...of消费  
+
+
+## node
+
+### 如何才能请求到数据?
+> URI URL（地址） URN（名字）
+
++ fetch('/get?user=name')
+
++ fetch('/post')
+
+
+### Node
+
+>     node是基于chromeV8引擎能够让js运行在服务端,通过npm下载功能模块包
+     
+
++ Node 的特性
+     - 单线程
+     - 非阻塞I/O
+     - 事件驱动 
+
+     node擅长处理高密集I/O，高并发的业务，写一些小工具，前端小玩具
+
+     node 没有DOM BOM
+
++ NodeJS使用的是commonjs规范（AMD规范 require CMD规范 sea.js）
+     - 引入
+          - require('文件') -> 返回值是一个对象，可以通过解构的方式拿到想要的模块
+               - 不加路径的情况：
+                    - node自带模块
+                    - node_modules种的模块
+     - 导出
+        +  module.exports = {
+               a:xxx,
+               b:xxx
+          }
+
+>  http 模块  为了创建一个服务
+
+- http.creatServer(function(request,response){}).listen(80)
+- request获取客服端发送给服务器的信息
+     - url 请求地址，地址上面有参数，还有个要注意的是/favicon.ico
+- response 服务器发送给客户端的信息
+     - write(写字符串)
+     - end()结束本次会话
+
+- fs 文件系统
+     - readFile(读的文件地址,回调函数(失败,文件数据))   //异步用的是回调
+     - readFileSync(读的文件地址) //同步，如果读取失败会报错，所以使用try包一下
+
+     - writeFile 添加文件
+     - writeFileSync 添加文件
+
+     -unlink 删除文件
+
+     -mkdir 添加文件夹
+
+     不管请求是找页面还是找借口，都是通过一个url的方式与后端进行交互，在访问服务器的时候最好把要访问服务器要做什么事说清楚
+
+
+#### 解决中文乱码
+```javascript
+ response.setHeader('Content-Type', 'text/html;charset=utf-8');
+```
+
+
+
++ flag标识符
+     + r 读取文件，如果文件不存在则抛出异常。read
+     + r+ 读取并写入文件，如果文件不存在则抛出异常。
+     + rs 读取并写入文件，指示操作系统绕开本地文件系统缓存。
+     + w 写入文件，文件不存在会被创建，存在则清空后写入。write
+     + wx 写入文件，排它方式打开。
+     + w+ 读取并写入文件，文件不存在则创建文件，存在则清空后写入。
+     + wx+ 和 w+ 类似，排他方式打开。
+     + a 追加写入，文件不存在则创建文件。append
+     + ax 与 a 类似，排他方式打开。
+     + a+ 读取并追加写入，不存在则创建。
+     + ax+ 与 a+ 类似，排他方式打开。
