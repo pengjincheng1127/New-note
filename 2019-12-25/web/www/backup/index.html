@@ -28,65 +28,60 @@
     <!-- </form> -->
     <p id="info" >请输入信息</p>
 </div>
+<script src="./axios_dev.js"></script>
 <script>
-    //注册
+//注册
     register.onclick = function(){
         let v1 = username.value;
         let p1 = password.value;
 
-        fetch('/api/user/register',{
-            method:'post',
-            body:''+new URLSearchParams({
-                username:v1,
-                password: p1
-            }),
-            headers:{
+       fetch('/api/user/register',{
+           method:'post',
+           body:''+new URLSearchParams({
+               username:v1,
+               password:p1
+           }),
+           headers:{
                 'content-type':'application/x-www-form-urlencoded'
             }
-        })
-        .then(d=>d.json()).then(d=>{
+       })
+       .then(d=>d.json()).then(d=>{
             if(d.code === 0){
-                alert('恭喜注册成功');
+                alert('注册成功');
                 window.location.href = '/';
             }else if(d.code === 1){
-                alert('用户名已被占用');
+                alert('注册失败');
             }
             username.value = password.value = '';
             console.log(d);
         });
     }
 
-
-    //登录
+    //登陆
     submit.onclick = function(){
         let v1 = username.value;
         let p1 = password.value;
-
         fetch('/api/user/login',{
             method:'post',
             body:''+new URLSearchParams({
                 username:v1,
-                password: p1
+                password:p1
             }),
             headers:{
                 'content-type':'application/x-www-form-urlencoded'
             }
-        }).then(d=>d.json())
-        .then(d=>{
+        }).then(d=>d.json()).then(d=>{
             if(d.code === -3){
-                alert(d.msg);
+                alert(d.msg)
             }else if(d.code === 0){
                 alert('欢迎'+d.userInfo.username+'回来');
                 window.location.href = '/';
                 username.value = password.value = '';
             }
             console.log(d);
-        });
+            
+        })
     }
-
-
-    
-
 
 </script>
 </body>
