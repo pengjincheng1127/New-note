@@ -1323,3 +1323,27 @@ import {固定的名字，跟导出的名字一致} from '路径'
           就等同于把路径中的所有内容都获取出来了，并且是一个对象
 ```
 
+
+## vue
+
+-MVVM 框架 Model View View Model
+
+- 渐进式(弱粘性、弱主张；)： JavaScript 框架
+ 
+- vue 全家桶： vue，vue-router，vuex，vue-cli
+
+### 使用vue   
+1. 引vue
+2. 在HTML里挂载一个根元素
+```
+<div id="app"> </div>
+```
+3. 实例化vue -> new Vue({})
+4. 配置参数
+     - el:'挂载元素',
+     - data(存数据):在new Vue下值为对象
+     - 输出数据用 双花括号 {{放数据名称}} 
+
+
+
+
