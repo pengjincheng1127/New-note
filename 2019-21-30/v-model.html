@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     <div id="app">
+        <input type="text" v-model.trim="val" @input="fn"/>
+        <p>{{val}}</p>
+        <hr>
+        <input type="checkbox" v-model="b">
+        <p>{{b}}</p>
+        <hr>
+        <input type="checkbox"v-model="ary" value="张">张
+        <input type="checkbox"v-model="ary" value="李">李
+        <input type="checkbox"v-model="ary" value="王">王
+        <p>{{ary}}</p>
+        <hr>
+        男：<input type="radio" value="0" v-model="num">
+        女：<input type="radio" value="1" v-model="num">
+       <p>{{ary2[num]}}</p> 
+
+     </div>
+    <script src="./vue.js"></script>
+    <script>
+        /*
+        修饰符：
+        lazy (把oninput 转成onchange)
+        number 自动把value 转成数字
+        */
+    new Vue({
+        el:"#app",
+        data:{
+            val:'',
+            b:false,
+            ary:[],
+            ary2:['男','女'],
+            num:0
+        },methods: {
+            fn(ev){
+                console.log(this.val)
+            }
+        },
+
+    })</script>
+</body>
+</html>

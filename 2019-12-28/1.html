@@ -1,56 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body id="body">
-    <div id="box">{{message}}
-    <h1 v-if="seen">{{name}}</h1>
-    <h2 v-bind:title="name">鼠标悬停</h2>
-    <!-- <ul>
+    <div  id="box">{{message}}
+        <h1 v-if="seen">{{name}}</h1>
+        <h2 v-bind:title="name">鼠标悬停</h2>
+        <!-- <ul>
         <li v-for="(val,key) in ary">{{val}}</li>
     </ul> -->
 
-    <!-- <ul>
+        <!-- <ul>
         <li v-if="type==='A'">A</li>
         <li v-else-if ="type==='B'">B</li>
         <li v-else-if="type ==='C'">C</li>
     </ul> -->
-    <ul>
-        <li v-for=""></li>
-        <li></li>
-        <li></li>
-    </ul>
-    <button v-on:click="cli">点击变色</button>
+        <ul>
+            <li v-for=""></li>
+            <li></li>
+            <li></li>
+        </ul>
 
-</div>
+        <div @click="click1">A
+            <div @click.stop = "click2">B</div>
+        </div>
+
+        <button @dblclick="click">点击</button>
+        <button v-on:click="cli">点击变色</button>
+
+        <div>
+            <input type="text" v-model="input">
+            <p>{{input}}</p>
+        </div>
+
+    </div>
     <script src="./vue.js"></script>
 
     <script>
-        
-   let aa =  new Vue ({
-        el:"#box",
-        data:{
-            message:"HAHA",
-            name:'张三',
-            ary:[1,2,3],
-            seen:true,
-            type:'',
-            
-        },
-        methods:{
-            cli:function(){
-                body.style.background='red'
+        let aa = new Vue({
+            el: "#box",
+            data: {
+                message: "HAHA",
+                name: '张三',
+                ary: [1, 2, 3],
+                seen: true,
+                type: '',
+                input:""
+            },
+            methods: {
+                cli: function () {
+                    body.style.background = 'red'
+                },
+                click: function () {
+                    alert(1)
+                },
+                click1:function(){
+                    console.log(1);
+                },
+                click2:function(){
+                    console.log(2);
+                    
+                }
             }
-        }
-    })
-    setTimeout(()=>{
-        aa.ary.push(4)
-    })
-
+        })
+        setTimeout(() => {
+            aa.ary.push(4)
+        })
     </script>
 </body>
+
 </html>

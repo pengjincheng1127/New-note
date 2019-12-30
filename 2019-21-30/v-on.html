@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model = "val" @key.13="add">
+         <!-- <input type="text" @input="change(1,$event)"/> -->
+        <button  @click ="add">发送</button>
+
+        <ul>
+            <li v-for="(val) in ary">
+                {{val}}
+            </li>
+        </ul>
+
+        <input type="text" @mousedown.prevent>
+        <button @click.once="once">点一次就完</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        /*
+        可以用@click.stop来解决事件冒泡
+        @click.once只能点一次
+       
+        */
+
+        new Vue({
+        el:'#app',
+        data:{
+        ary:[1],
+        val:''
+        },methods: {
+            once(){
+                alert(1)
+            },
+            add(){
+                if(this.val ===''){
+                    return;
+                }else{
+                    this.ary.push(this.val)
+                    this.val = ''
+                }
+                
+            },
+             // change(num,ev){
+            //    如果不传参，第一个参数就是事件对象
+            //     如果传了参还想拿到事件对象，需要在模板中的事件函数内传一个$event
+            //     console.log(ev.target.value);
+            //     this.val = ev.target.value;
+            // }
+        },
+        })
+    </script>
+
+</body>
+</html>

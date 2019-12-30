@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <section class="todoapp">
+        <div>
+            <header class="header" >
+                <h1>todos</h1>
+                <input 
+                    class="new-todo" 
+                    placeholder="请输入内容" 
+                    @keyup.13="send"
+                    v-model = "val"
+                >
+            </header>
+            <section class="main">
+                <input class="toggle-all" type="checkbox" >
+                <ul class="todo-list">
+                    <li :class="(val.checked?'completed':'') + ' '+ (val.onoff?'editing':'')" 
+                    v-for="(val,key) in ary"
+                  
+                    
+                    > <!-- editing   completed -->
+                        <div class="view">
+                            <input 
+                            class="toggle"
+                            type="checkbox"
+                            v-model = "val.checked"
+                            @click="val.checked=!val.checked"
+                            >
+                            <label @dblclick="val.onoff=!val.onoff"
+                            
+                            >{{val.txt}}</label>
+                            <button class="destroy" ></button>
+                        </div>
+                        <input 
+                            class="edit"
+                            v-model = "val.txt"
+                            @keyup.13=""
+                        />
+                    </li>
+                </ul>
+            </section>
+            <footer class="footer">
+	            <span class="todo-count">
+	            	<strong>0</strong>
+	            	<span>条未选中</span>
+                </span>
+                <ul 
+                    class="filters"
+                >
+                    <li>
+                        <a 
+                            href="#/all" 
+                            class="selected"
+                           
+                        >全部</a>
+                    </li>
+                    <li>
+                        <a 
+                            href="#/unchecked" 
+                            
+                            class=""
+                        >未选中</a>
+                    </li>
+                    <li>
+                        <a 
+                            href="#/checked"
+                            class=""
+                        >已选中</a>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </section>
+<script src="./vue.js"></script>
+<script>
+    // editing completed
+    // editing ''
+    // ''
+    //completed
+    new Vue({
+        el:'.todoapp',
+        data:{
+            val:'',
+            num:0,
+            seen:true,
+            ary:[
+                {
+                    id:0,
+                    txt:'哈哈',
+                    checked:true,
+                    onoff:false
+                },
+                {
+                    id:1,
+                    txt:'呵呵',
+                    checked:false,
+                    onoff:false
+                },
+               
+            ]
+        },
+        methods:{
+            send(){
+                // console.log(1);
+                if(this.val===''){
+                    alert('请输入内容');
+                    return;
+                }else{
+                    this.ary.push({ 
+                    // id:,
+                    txt:this.val,
+                    checked:false,
+                    onoff:false
+                })
+                this.val = '';
+                }
+               
+            },
+            modify(){
+                console.log(1)
+            },
+            hua(){
+                console.log();
+                
+            }
+        }
+            
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #box div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+    }
+
+    #box div .show {
+        display: block;
+    }
+</style>
+
+<body>
+    <div  id="box">
+        <button @click="fn(0)">按钮一</button>
+        <button @click="fn(1)">按钮二</button>
+        <button v @click="fn(2)">按钮三</button>
+
+        <div v-show="block===0">1111</div>
+        <div v-show="block===1">2222</div>
+        <div v-show="block===2">3333</div>
+
+    </div>
+    <script src="./vue.js"></script>
+
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                block: 0,
+                ary:[0,1,2]
+            },
+            methods: {
+                fn(num) {
+                    // console.log();
+                    this.block = num;
+                }
+            }
+        
+        })
+    </script>
+</body>
+
+</html>

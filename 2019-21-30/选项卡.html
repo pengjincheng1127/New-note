@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    
+        #box div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+    
+        #box div .show {
+            display: block;
+        }
+    </style>
+    
+    <body>
+        <div  id="box">
+            <button
+             v-for="(val,key) in btns"
+             @click = 'fn(key)'
+             >{{val}}</button>
+           
+            <div
+            v-for="(val,key) in content"
+            v-show = "block === key"
+            >{{val}}</div>
+    
+        </div>
+    <script src="./vue.js"></script>
+    <script>
+   let a =  new Vue({
+    el:"#box",
+    data:{
+        block:0,
+        btns:['按钮一','按钮二','按钮三'],
+        content:['11111','2222','3333']
+    },
+    methods: {
+        fn(num){
+            this.block = num
+        }
+    },
+    })
+
+    </script>
+</body>
+</html>

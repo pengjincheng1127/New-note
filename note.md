@@ -1344,6 +1344,36 @@ import {固定的名字，跟导出的名字一致} from '路径'
      - data(存数据):在new Vue下值为对象
      - 输出数据用 双花括号 {{放数据名称}} 
 
+### 指令
+- 为了方便开发者开发，vue 中使用了指令，这些指令包含了很多元素身上的属性和js的一些内置方法
+
+- v-text => innerText
+- v-html => innerHTML
+- v-show => display:block/none 布尔值
+- v-if 看布尔值是否为true， 为true就渲染否则就不渲染；
+- v-else 限制:它上面必须是if  或者else if
+- v-on:（缩写@）事件名 = "事件函数|简单语法"
+     
+    - $event  
+            如果不传参，第一个参数就是事件对象
+            *** 如果传了参还想拿到事件对象，需要在模板中的事件函数内传一个
+        - 修饰符  .13  .enter .stop  .prevent .once ...
+        - 解绑事件可以使用
+```
+     @mousedown="onoff && down($event)"
+     当onoff是真的就添加事件，假的就解除事件
+```
+
+     修饰符 .13 .enter
+- v-for="val,key in 数据" 遍历对象或者数组
+     如果是数组val就是数组的成员，key就是索引
+     如果是对象val就是键值，key就是键名
 
 
+methods：专门放函数的( 一般是事件函数)
 
+如果属性需要动态操作那么就使用v-bind:xx 缩写 ":"
+        :style="{属性名:属性值（可以为数据）}"
+        :style="[{属性名1:属性值1（可以为数据）},{属性名2:属性值2（可以为数据）}]"
+        :class="{类名:布尔值}"
+        v-bind="{data:1}"  没有具体的属性可以使用v-bind=对象（批量设置属性）
