@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    <input
+     type="text"
+    v-model = "txt"
+    @keyup.13 = add
+     >
+     <ul>
+        <li v-for="(val) in ary">
+            <input type="checkbox" v-model="val.checked"/>
+            <span>{{val.val}}</span>
+        </li>
+    </ul>
+    {{ary}}
+
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+    /*
+    computed和watch区别
+        watch（只有数据发生改变才触发，还可以进行深度监听(deep:true)）、computed（上来就触发一次，数据改变再出触发） 都是舰艇数据
+    */
+    new Vue({
+        el:"#app",
+        data:{
+            txt:'',
+            ary:getIem()
+        },
+        methods:{
+            add(){
+                this.ary.unshift({
+                    id:Date.now(),
+                    val:this.txt,
+                    checked:false
+                });
+                this.txt = ''
+            }
+        },
+        //watch 监听的都是data中的数据
+        //watch默认只能监听一层数据，如果有多层是监听不到地
+        watch:{
+            ary:{
+                handler(val,oldVal){
+                    localStorage.setItem('data',JSON.stringify(val))
+                },
+                deep:true
+            }
+        }
+    });
+
+    function getIem(){
+        let v = localStorage.getItem('data');
+        return v && JSON.parse(v)||[{
+            id:0,
+            val:'111',
+            checked:true
+        },{
+            id:1,
+            val:'222',
+            checked:false
+        }]
+    }
+    </script>
+</body>
+</html>

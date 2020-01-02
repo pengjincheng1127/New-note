@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <input 
+        type="text" 
+        v-model="val"
+        @keyup.13="click"
+    />
+    <!-- @input="change" id="txt"-->
+    <button
+        @click="click"
+    >点击</button>
+    <!-- <input  v-model="val" type="text" /> -->
+    <!-- {{val}} -->
+    <ul>
+        <li 
+            v-for="(val,key) in ary"
+            @click="rm(key)"
+        >{{val}}</li>
+    </ul>
+    {{ary}}
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+    /*
+    双向数据绑定(数据驱动试图，试图也可以改变数据)
+    邦v-model的目的就是想让用户操作界面的时候顺便操作数据
+
+    只要遇到了表单元素，可以考虑使用v-model
+    */
+    new Vue({
+        el:'#app',
+        data:{
+            val:'',
+            ary:[]
+        },
+        methods:{
+            click(){
+                // console.log(txt.value);
+                this.ary.push(this.val);
+                this.val = '';
+            },
+            rm(key){
+                // this.ary = this.ary.filter(e=>e!==ev.target.innerText)
+                // console.log(ev.target.innerText);
+                this.ary = this.ary.filter((e,index)=>index!==key);
+            }
+
+            // up(ev){
+            //     if(ev.keyCode === 13){
+            //         console.log(1111)
+            //     }
+            // }
+        }
+    });
+
+    </script>
+</body>
+</html>
