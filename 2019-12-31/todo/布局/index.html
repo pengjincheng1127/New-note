@@ -49,6 +49,7 @@
                             class="edit"
                             @keyup.esc="up(val.id)"
                             @blur="blurfn(val)"
+                            v-model="ary.txt"
                         />
                     </li>
                 </ul>
@@ -129,7 +130,7 @@
                     checked:false,
                     onoff:false
                 })
-                this.val = '';
+                this.val = '';.0
                 }
                
             },
@@ -144,7 +145,10 @@
                 this.ary.forEach(item=>{
                     if(item.id === id){
                         item.onoff = true;
-                        // item.txt = txt
+                        item.txt = txt
+                        // console.log(item);
+                        // console.log(val);
+
                     }
                 });
 
@@ -207,7 +211,6 @@
                 });
             }
         }
-
             
     })
 </script>

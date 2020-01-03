@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-color="'blue'"> {{val}}</div>
+        <asd></asd>
+        <input type="text" v-focus value="123123123">
+    </div>
+
+    <template id="asd">
+        <div v-size="50">
+            aaaaaaaaaa
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+
+        Vue.directive('color',function(el,val){
+            el.style.color = val.value?val.value:"red"
+        });
+        Vue.directive('focus',{
+            inserted(el){
+                el.select();
+            }
+        })
+
+// Vue.directive('fo')
+    new Vue({
+        el:"#app",
+        data:{
+            val:"吱吱吱吱吱吱吱"
+        },
+        components:{
+            asd:{
+                template:"#asd",
+                directives:{
+                    size(el,val){
+                        el.style.fontSize = val.value?val.value+'px':'12px'
+                    }
+                }
+            }
+        },
+      
+    })
+    </script>
+</body>
+</html>

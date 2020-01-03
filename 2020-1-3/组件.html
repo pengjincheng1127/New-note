@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <btn></btn>
+        <ppp></ppp>
+        <temp></temp>
+    </div>
+
+    <template id="temp">
+        <div>
+            <div>aaaaa,我是模板啊{{num}}</div>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        const btn = {
+            template: '<button>按钮一</button>'
+        }
+        const ppp = {
+            template: `<div>
+                <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+                <btn></btn>
+                </div>`,
+            components: {
+                btn
+            }
+        }
+        const temp = {
+            template:'#temp',
+            data(){
+                return{
+                    num:10
+                }
+            }
+        }
+
+        Vue.component('ppp',ppp)
+        Vue.component('btn', btn)
+        Vue.component('temp',temp)
+        new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+
+</html>
