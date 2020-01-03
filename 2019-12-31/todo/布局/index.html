@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<style>
+        [v-cloak]{
+            display: none;
+        }
+</style>
+
+<body>
+    <section class="todoapp" v-cloak>
+        <div>
+            <header class="header" >
+                <h1>todos</h1>
+                <input 
+                    class="new-todo" 
+                    placeholder="请输入内容" 
+                    @keyup.13="send"
+                    v-model = "val"
+                >
+            </header>
+            <section class="main">
+                <input class="toggle-all" type="checkbox" 
+                v-model="all">
+                <ul class="todo-list">
+                    <li :class="(val.checked?'completed':'') + ' '+ (val.onoff?'editing':'')" 
+                    v-for="(val,key) in filterAry"
+                  
+                    
+                    > <!-- editing   completed -->
+                        <div class="view">
+                            <input 
+                            class="toggle"
+                            type="checkbox"
+                            v-model = "val.checked"
+                           
+                            >
+                            <label @dblclick="dbfn(val)"
+                            
+                            >{{val.txt}}</label>
+                            <button class="destroy" @click = rm(key)></button>
+                        </div>
+                        <input 
+                            class="edit"
+                            @keyup.esc="up(val.id)"
+                            @blur="blurfn(val)"
+                        />
+                    </li>
+                </ul>
+            </section>
+            <footer class="footer" >
+	            <span class="todo-count">
+	            	<strong>{{wnum}}</strong>
+	            	<span>条未选中</span>
+                </span>
+                <ul 
+                    class="filters"
+                >
+                    <li>
+                        <a 
+                        href="#/all" 
+                        :class="router=== '#/all'?'selected':''"
+                        @click="router = '#/all'"
+                           
+                        >全部</a>
+                    </li>
+                    <li>
+                        <a 
+                        href="#/unchecked" 
+                        @click="router = '#/unchecked'"
+                        :class="router=== '#/unchecked'?'selected':''"
+                        >未选中</a>
+                    </li>
+                    <li>
+                        <a 
+                        href="#/checked"
+                        @click="router = '#/checked'"
+                        :class="router=== '#/checked'?'selected':''"
+                        >已选中</a>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </section>
+<script src="./vue.js"></script>
+<script>
+    // editing completed
+    // editing ''
+    // ''
+    //completed
+
+    new Vue({
+        el:'.todoapp',
+        data:{
+            val:'',
+            router:'#/all',
+            esc:false,
+            ary:[
+                {
+                    id:0,
+                    txt:'哈哈',
+                    checked:true,
+                    onoff:false
+                },
+                {
+                    id:1,
+                    txt:'呵呵',
+                    checked:false,
+                    onoff:false
+                },
+               
+            ]
+        },
+        methods:{
+            send(){
+                // console.log(1);
+                if(this.val===''){
+                    alert('请输入内容');
+                    return;
+                }else{
+                    this.ary.unshift({ 
+                    id:+new Date,
+                    txt:this.val,
+                    checked:false,
+                    onoff:false
+                })
+                this.val = '';
+                }
+               
+            },
+            //删除
+            rm(key){
+                this.ary = this.ary.filter((e,index)=>index!==key);
+            },
+            //双击显示输入框
+            dbfn(val){
+                // alert(id);
+                let {txt,id} = val;
+                this.ary.forEach(item=>{
+                    if(item.id === id){
+                        item.onoff = true;
+                        // item.txt = txt
+                    }
+                });
+
+            },
+            //失焦
+            blurfn(val){
+                if(this.esc){
+                    this.esc = false;
+                }else{
+                    let {id} = val;
+                    this.ary.forEach(item=>{
+                        if(item.id === id){
+                            item.txt = item.txt;
+                            item.onoff = false;
+                        }
+                    })
+                }
+                
+            },
+            //esc
+            up(id){
+                this.ary.forEach(item=>{
+                    if(item.id === id){
+                        item.onoff = false;
+                    }
+                })
+                this.esc = true;
+            },
+            
+        },
+        computed:{
+            //全选按钮
+            all:{
+                get(){
+                    return this.ary.every(item=>item.checked);
+                },
+                set(val){
+                    this.ary = this.ary.map(item=>{
+                        item.checked = val;
+                        return item;
+                    })
+                }
+            },
+            //未选中的个数
+            wnum(){
+                return this.ary.filter(item=>!item.checked).length
+            },
+            //跳转
+            filterAry(){
+                let {router} = this;
+                return this.ary.filter(item=>{
+                    switch(router){
+                        case '#/all':
+                            return item;
+                        case '#/unchecked':
+                            return !item.checked
+                        case '#/checked':
+                            return item.checked
+                    }
+                });
+            }
+        }
+
+            
+    })
+</script>
+</body>
+</html>
