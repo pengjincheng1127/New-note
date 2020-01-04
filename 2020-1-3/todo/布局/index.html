@@ -30,11 +30,12 @@
                 <ul class="todo-list">
                     <li 
                     
-                    v-for="(val,key) in ary"
+                    v-for="(val,key) in hashAry"
                     :class="{
                         completed:val.checked,
                         editing:val.onoff
                     }"
+                    :key="val.id"
                     >
                         <div class="view">
                             <input class="toggle" type="checkbox" 
@@ -45,13 +46,14 @@
                         <input 
                             class="edit" 
                             ref="edit"
+                            :val = val.txt
                             @blur="off(val,$event)"
                             @keyup.esc="onoff_FN(val.id,false)"
                         />
                     </li>
                 </ul>
             </section>
-            <footer class="footer">
+            <footer class="footer" v-show="ary.length">
 	            <span class="todo-count">
 	            	<strong>{{ary | unchecked}}</strong>
 	            	<span>条未选中</span>
@@ -62,7 +64,9 @@
                     <li>
                         <a 
                             href="#/all" 
-                            class="selected"
+                            :class="{
+                                selected:hash === '#/all'
+                            }"
                            
                         >全部</a>
                     </li>
@@ -70,13 +74,17 @@
                         <a 
                             href="#/unchecked" 
                             
-                            class=""
+                            :class="{
+                                selected:hash === '#/unchecked'
+                            }"
                         >未选中</a>
                     </li>
                     <li>
                         <a 
                             href="#/checked"
-                            class=""
+                            :class="{
+                                selected:hash === '#/checked'
+                            }"
                         >已选中</a>
                     </li>
                 </ul>

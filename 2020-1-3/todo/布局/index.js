@@ -3,21 +3,14 @@ new Vue({
     data:{
         val:'',
         all:false,
-        ary:[
-            {
-                id:0,
-                txt:'哈哈',
-                checked:false,
-                onoff:false
-            },
-            {
-                id:1,
-                txt:'呵呵',
-                checked:true,
-                onoff:false
-            }
-        ]
-    
+        hash:window.location.hash || '#/all',
+        ary:[],
+    },
+    created() {
+        window.onhashchange  =()=>{
+            this.hash = window.location.hash;
+        }
+        this.ary = getData();
     },
     methods: {
         //回车发送
@@ -80,4 +73,54 @@ new Vue({
             return val.filter(e=>!e.checked).length;
         }
     },
+    computed: {
+        hashAry(){
+            const {ary,hash} = this;
+            console.log(ary)
+            return ary.filter(item=>{
+                switch(hash){
+                    case '#/all':
+                            return item;
+                        case '#/unchecked':
+                            return !item.checked;
+                        case '#/checked': 
+                            return item.checked;
+                        default:
+                            return item;
+                }
+            })
+             console.log(this.hash);
+        }
+    },
+    watch: {
+        ary:{
+            handler(){
+                this.all = !!this.ary.length && this.ary.every(e=>e.checked);
+                if(this.ary.length){
+                    localStorage.setItem('data',JSON.stringify(this.ary));
+                }
+            },
+            deep:true,
+            immediate:true
+        }
+    },
 })
+
+function  getData(){
+    let d = localStorage.getItem('data');
+    return d?JSON.parse(d):[
+        
+        {
+            id:0,
+            txt:'哈哈',
+            checked:false,
+            onoff:false
+        },
+        {
+            id:1,
+            txt:'呵呵',
+            checked:true,
+            onoff:false
+        }
+    ]
+}
