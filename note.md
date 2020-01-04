@@ -1387,6 +1387,161 @@ methods：专门放函数的( 一般是事件函数)
           不要修改某个属性名，而是把对象的值整体替换(指向新的堆内存)
           可以基于vm.$set内置方法修改数据：vm.$set(obj,key,value)
 
-### filter     
-     Vue.filter()
-     
+### filter过滤器
+    Vue.filter('名字',(val)=>{
+        return val.xxx
+    })
+
+    {{ val | '名字' }}
+
+
+> 局部:
+    - new Vue({filters:{
+        名字:(val){
+
+        }
+    }})
+
+### computed  计算属性（通过data中的数据变化进行二次操作且一上来就执行一次）
+    ```
+        computed:{
+            //getter
+            revers(){
+                return xxx
+            }
+
+            revers:{
+                get(){
+                    return  xxx
+                },
+                set(){
+
+                }
+            }
+        }
+    ```
+    - getter
+    - setter
+
+### watch 通过data中的**指定**数据变化进行二次操作
+    ```
+        watch:{
+            //默认不会深度监听
+            ary(){
+                xxx
+            },
+            ary:{
+                handler(){
+
+                },
+                deep:true   //深度监听
+                immediate: true  //一上来就触发
+            }
+        }
+    ```
+
+### ref 为了快速定位元素或者组件
+    ```
+        <ppa ref="xx">
+
+        this.$refs.xx
+    ```
+
+### 组件
+    ```
+        //放在new Vue上方
+        Vue.component('组件名',{
+            template:``,  注意的是顶层只能有一个元素
+            data(){
+                return {
+                    ary:[]
+                }
+            }
+        })
+
+
+
+        {
+            components:{
+                组件名:对象
+            }
+        }
+
+    ```
+### 组件的传递
+    ```
+        传递:
+            通过子组件的属性来传
+            <div num="3"></div>（静态的） 或者
+            <div :num="pnum"></div>（动态的）
+
+        接收:
+            {
+                props:['num']
+            }
+    ```
+
+    在父级传递数据给自己的时候，可以让自己拥有父级的数据并且不与父级数据相关联
+        1.通过子组件的属性来传
+            <div :num="pnum"></div>（动态的）
+
+        2.使用props接收
+            {
+                props:['num']
+            }
+
+        3.把接收过来的数据变成自己的
+            {
+                props:['num'],
+                data(){
+                    return {
+                        cnum:this.num
+                    }
+                }
+            }
+
+
+    ```
+        子传父:
+            1.父级需要定义一个改变自己数据的方法
+            2.子级需要定义一个事件，去调用父级的方法
+                this.$emit('自定义事件名',可以传参)
+            3.在子组件的行间绑定子级的事件，值为父级的修改数据的方法
+    ```
+
+### Vue.nextTick  数据改变，DOM更新完成之后触发
+
+
+
+##   
+插槽:
+            在开发中写什么结构就是什么结构，优点就是固定统一，缺点就是不够灵活
+
+            就是为了解决不灵活的问题，能够自定义一些组件，能够替换之前默认的配置
+
+
+            匿名插槽:
+                子组件中定义slot
+                父组件中给调用的子组件双标签内填入结构
+                这个时候slot就被填入结构覆盖
+
+            具名插槽
+                在slot标签中设置一个name属性，值为随意
+                在插入替换内容的时候，在替换标签中定义一个slot的属性值和要替换的name对应
+                
+           作用域插槽
+                在子级的slot中
+                    1.定义一个name="唯一个标识符"
+                    2.通过v-bind去传入使用的数据
+
+                在父级template中
+                    1.v-slot:name标识符 = "自定义的名字"
+                        ** v-slot可以缩写为#
+                    2.使用自定义的名字.xx
+
+                <slot name="cc" :age="index" >
+
+                <template #cc="cdata">
+                    {{cdata.age}}
+                </template>
+

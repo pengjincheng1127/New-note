@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ppa>
+            <div slot="footer">大脚丫子</div>
+            <div slot="body">身高八尺</div>
+            <div slot="head">三个🐖头</div>
+        </ppa>
+    </div>
+
+
+    <template id="ppa">
+        <div>
+            <slot name="head">
+                <div class="head">头部</div>
+            </slot>
+            <slot name="body">
+                <div class="body">身体</div>
+            </slot>
+            <slot name="footer">
+                <div class="footer">脚</div>
+            </slot>
+        </div>
+       
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+    const ppa = {
+        template:'#ppa'
+    }
+
+
+    new Vue({
+        el:'#app',
+        components:{
+            ppa
+        }
+    })
+    </script>
+</body>
+</html>
