@@ -1547,7 +1547,7 @@ methods：专门放函数的( 一般是事件函数)
 
 ###  生命周期
 
-     created 可以做ajax请求
+     created 可以做ajax请求 
      mounted 可以进行DOM操作
      destroyed 可以接触一些定时器、事件监听...
 
@@ -1556,3 +1556,90 @@ methods：专门放函数的( 一般是事件函数)
      单页SPA优点：
           不刷新页面，在当前页切换多页的操作方式，能够提高用户体验
           能够公用一些公共静态资源，减少HTTP请求实现真正的前后端分离
+
+  $route 获取路由的信息(属性)
+
+  this.$route.parmas
+
+  $router 跳转路由的方法(方法)
+
+  动态路由：
+     主体一样，但是部分内容不一样，可以使用动态路由
+     写法：
+     /about/:id 匹配下面几种路由(id是自定义的)
+     /about/:1
+     /about/:2
+     ...
+     使用：
+          $route.parmas.id
+               切换的时候不会触发一些钩子函数，比如created，可以使用watch监听
+
+          watch:{
+               '$route'(){
+
+               }
+          }
+
+     嵌套路由:
+          在路由配置中使用children:[{path:'x'}] 匹配的是 /parent/x
+          主义的是parent组件中需要协商router-view要不然子组件渲染不出来
+          如果进入parent下没有指定的children，又要默认添加一个组件，可以在path上写''
+
+     编程导航：
+          $router.push()
+          $router.replace()
+          $router.go()
+          
+          可以传字符串和对象
+          '/'
+          {
+               path:'/'
+               name:'home'
+               query:{
+                    name:'xx'  ->/?name=xx
+               },
+               paramas:{
+                    nn:'xx'  -> 主义的是路由上不会显示nn，但是可以通过$route.params.nn去获取
+
+               }
+          }
+
+     重定向:
+     {path:'/a',redirect:{name:'foo'}}
+
+     路由传参：
+          可以在路由配置项中配置一个props，如果为true，那么子组件可以通过
+          props去接受parmas参数
+               可以看Home.vue 中的p4
+
+
+切换路由触发
+
+     next(); 执行之后的路由跳转
+     next(false) 中断路由跳转
+     next('/') 等同于push   或者使用 next({path:'/'})
+
+     如果有全局和局部，那么全局优先级大
+
+     全局的beforeEach(要切换路由的时候触发)
+
+     组件中的beforeRouteLeave 离开组建的时候触发
+     
+     复用组件使用beforeRouteUpdate 去进行监听
+
+     路由中的beforeEnter 进入路由的时候触发
+
+完整的导航解析流程
+
+     导航被触发
+     在失活的组件里调用离开守卫
+     调用全局的beforeEach守卫
+     在重用的组件里调用beforeRouteUpdate 守卫
+     在路由配置里调用 beforeEnter
+     解析异步路由组件
+     在被激活的组件里调用beforeRouteEnter
+     调用全局的beforeResolve 守卫
+     导航被确认
+     调用全局的afterEach 钩子
+     触发DOM更新
+     用创建好的实例调用beforeRouteEnter 守卫中传给next的回调函数
