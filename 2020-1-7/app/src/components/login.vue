@@ -14,7 +14,7 @@
         },
         data(){
             return{
-                unmae:'',
+                uname:'',
                 pass:'',
                 path:''
             }
