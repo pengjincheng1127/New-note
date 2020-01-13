@@ -53,7 +53,7 @@
           暂存区跟版本区的区别：
                git diff --cached
 
-## 设置作者信息
+## 设置作者信息     
 
 - 设置邮箱   git config --global user.name "你的名字(英文的)"
 - 设置用户名  git config --global user.email "你的邮箱(能够收到右键的邮箱)"
@@ -1643,3 +1643,6 @@ methods：专门放函数的( 一般是事件函数)
      调用全局的afterEach 钩子
      触发DOM更新
      用创建好的实例调用beforeRouteEnter 守卫中传给next的回调函数
+
+## vuex 
+     是一个专为vue.js，提供的可预测的状态管理模式
